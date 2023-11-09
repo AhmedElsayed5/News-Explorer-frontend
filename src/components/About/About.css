@@ -1,0 +1,37 @@
+.about {
+  font-family: "Roboto Slab", sans-serif;
+  padding-left: 104px;
+  padding-right: 104px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  position: relative;
+  gap: 56px;
+}
+
+.about__title {
+  padding-top: 50px;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 46px;
+  margin: 0px;
+  padding-bottom: 24px;
+}
+
+.about__paragraph {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 0px;
+}
+
+.about__title-paragraph {
+  width: 600px;
+  height: 120px;
+}
+
+.about__image {
+  /* padding-right: 100px; */
+}

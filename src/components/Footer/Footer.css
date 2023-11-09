@@ -1,0 +1,28 @@
+.footer {
+  padding-left: 104px;
+  padding-right: 104px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer__trademark {
+  font-family: "Roboto Slab", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  color: #b6bcbf;
+}
+
+.footer__icons {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+
+.footer__link {
+  text-decoration: none;
+  color: black;
+}
