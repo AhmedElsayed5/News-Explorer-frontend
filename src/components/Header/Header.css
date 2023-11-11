@@ -8,6 +8,9 @@
   padding-left: 104px;
   padding-right: 104px;
   margin: 0;
+  border-bottom: 2px solid;
+  border-color: rgba(255, 255, 255, 0.2);
+  /* background: transparent; */
 }
 
 .header__logo {
@@ -15,7 +18,7 @@
   font-style: normal;
   font-weight: 700;
   line-height: 24px;
-  color: black;
+  color: white;
   text-decoration: none;
 }
 
@@ -33,11 +36,20 @@
   opacity: 1;
   margin: 0;
   padding: 0;
-  color: black;
+  color: white;
+}
+
+.header__button:hover {
+  cursor: pointer;
 }
 
 .header__button-home {
   border: none;
+}
+
+.header__button-home:active {
+  border: 2x solid;
+  border-color: red;
 }
 
 .header__signin {
@@ -45,7 +57,7 @@
   width: 176px;
   height: 48px;
   border: 1px solid;
-  border-color: black;
+  border-color: white;
 }
 
 .header__link {

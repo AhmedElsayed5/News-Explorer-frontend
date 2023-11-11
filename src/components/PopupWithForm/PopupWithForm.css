@@ -1,0 +1,132 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal__content {
+  background-color: #ffffff;
+  max-width: 430px;
+  width: 100%;
+  min-height: 380px;
+  border-radius: 20px;
+  padding: 28px 28px 0 28px;
+  position: relative;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.modal__title {
+  margin: 0 0 24px 0;
+  font-family: "Roboto Slab", sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+}
+
+.form__field {
+  border: none;
+  padding: 0;
+}
+
+.modal__labels {
+  display: flex;
+  flex-direction: column;
+  gap: 41px;
+}
+
+.modal__label {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 41px;
+  color: #2f71e5;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.modal__input {
+  border: none;
+  opacity: 0.2;
+  border-bottom: 1px solid black;
+  max-width: 440px;
+  width: 100%;
+  padding: 8px 0 4px 0;
+}
+
+.modal__button-submit {
+  width: 360px;
+  height: 64px;
+  box-sizing: border-box;
+  padding: 0px;
+  border-radius: 100px;
+  background: #2f71e5;
+  border: none;
+  color: white;
+  font-family: "Roboto Slab", sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.modal__button-submit:hover {
+  opacity: 0.5;
+}
+
+.modal__button-other-option-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  width: 226px;
+  height: 20px;
+}
+
+.modal__button-other-option {
+  margin: 0;
+  color: #2f71e5;
+  cursor: pointer;
+  border: none;
+  background: white;
+}
+
+.modal__close-button {
+  position: absolute;
+  background: none;
+  right: -10px;
+  top: -40px;
+  width: 14px;
+  height: 14px;
+  border: none;
+  cursor: pointer;
+}
+
+.modal__close-button:hover {
+  opacity: 0.5;
+}
+
+.modal__buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.modal__button-other-option-signup-only {
+  padding-bottom: 20px;
+}

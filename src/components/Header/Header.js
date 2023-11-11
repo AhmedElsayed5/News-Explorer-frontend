@@ -1,7 +1,7 @@
 import "./Header.css";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
-const Header = () => {
+const Header = ({ onSignInModal, onSignUpModal, onCloseModal }) => {
   return (
     <header
       className="header"
@@ -14,7 +14,12 @@ const Header = () => {
       </div>
       <div className="header__buttons">
         <button className="header__button header__button-home">Home</button>
-        <button className="header__button header__signin">Sign-in</button>
+        <button
+          className="header__button header__signin"
+          onClick={onSignInModal}
+        >
+          Sign-in
+        </button>
         {/* <button className="header__button">
           <Link to="saved-news" className="header__button header__link">
             Saved articles

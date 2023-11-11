@@ -3,7 +3,8 @@ import "./About.css";
 const About = () => {
   return (
     <div className="about">
-      <div className="about__image">
+      {/* <SignUpPopup /> */}
+      <div>
         <img src={aboutPic} alt="about"></img>
       </div>
       <div className="about__title-paragraph">
