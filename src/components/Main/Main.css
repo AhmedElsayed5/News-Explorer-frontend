@@ -67,6 +67,10 @@
   border-style: none;
 }
 
+.main__search-button:hover {
+  cursor: pointer;
+}
+
 .main__search-input-container {
   box-sizing: border-box;
   border-radius: 100px;

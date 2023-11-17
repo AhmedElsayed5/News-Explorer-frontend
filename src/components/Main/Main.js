@@ -1,8 +1,19 @@
 import Header from "../Header/Header";
+import { useState } from "react";
 import "./Main.css";
-import backGround from "../../images/topBackground.svg";
+import PreLoader from "../PreLoader/PreLoader";
 
-const Main = ({ onSignInModal, onSignUpModal, onCloseModal }) => {
+const Main = ({ onSignInModal, onSignUpModal, onCloseModal, onSearch }) => {
+  const [search, setSearch] = useState("");
+  const handleSearch = (e) => {
+    // console.log(e.target.value);
+    setSearch(e.target.value);
+  };
+
+  const onSubmitSearh = (e) => {
+    e.preventDefault();
+    onSearch(search);
+  };
   return (
     <div className="header-main">
       <Header
@@ -24,18 +35,20 @@ const Main = ({ onSignInModal, onSignUpModal, onCloseModal }) => {
           </div>
         </div>
         <div className="main__search-button-input">
-          {/* <div className="main__search-input-container">
+          <form onSubmit={onSubmitSearh}>
             <input
-              className="main__search-input"
+              className="main__search-input-container"
               placeholder="Enter topic"
+              type="text"
+              name="search"
+              value={search}
+              onChange={handleSearch}
+              required
             ></input>
-          </div> */}
-          {/* <div className="main__search-input-container"> */}
-          <input
-            className="main__search-input-container"
-            placeholder="Enter topic"
-          ></input>
-          <button className="main__search-button">Search</button>
+            <button className="main__search-button" type="submit">
+              Search
+            </button>
+          </form>
         </div>
       </div>
     </div>
