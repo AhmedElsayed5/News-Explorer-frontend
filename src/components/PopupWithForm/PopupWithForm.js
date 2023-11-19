@@ -13,7 +13,7 @@ const ModalWithForm = ({
 }) => {
   console.log("ModalWithForm");
   return (
-    <div className={`modal `}>
+    <div className={`modal`}>
       <div className="modal__content">
         <button
           type="button"

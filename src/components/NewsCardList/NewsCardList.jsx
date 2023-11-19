@@ -1,7 +1,8 @@
-import { Children } from "react";
+import { useState } from "react";
 import NewsCard from "../NewsCard/NewsCard";
 import "./NewsCardList.css";
-const NewsCardList = ({ children, cards }) => {
+const NewsCardList = ({ children, cards, error }) => {
+  const [numberOfCards, setNumberOfCards] = useState(3);
   // cards.slice(0, 3);
   console.log(cards.length);
 
@@ -9,10 +10,12 @@ const NewsCardList = ({ children, cards }) => {
     <div className="cardList">
       <header className="cardList__title">Search results</header>
       {children}
-      <div className="cardList__container-button">
-        {cards.length ? (
+      {console.log(error)}
+      {/* <div className="cardList__container-button"> */}
+      {cards.length ? (
+        <div className="cardList__container-button">
           <div className="cardList__container">
-            {cards?.slice(0, 3).map((card, key) => (
+            {cards?.slice(0, numberOfCards).map((card, key) => (
               <NewsCard
                 key={key}
                 source_name={card.source.name}
@@ -23,14 +26,29 @@ const NewsCardList = ({ children, cards }) => {
               />
             ))}
           </div>
-        ) : (
-          <h2 className="cardList__error cardList__title">
-            Sorry!! Nothing to show please try again with different words
-          </h2>
-        )}
-
-        <button className="cardList__more-button">Show more</button>
-      </div>
+          <button
+            onClick={() => setNumberOfCards(numberOfCards + 3)}
+            className="cardList__more-button"
+          >
+            Show more
+          </button>
+        </div>
+      ) : (
+        <div className="cardList__container-button">
+          {error ? (
+            <h2 className="cardList__error cardList__title">
+              "Sorry, something went wrong during the request. There may be a
+              connection issue or the server may be down. Please try again
+              later."
+            </h2>
+          ) : (
+            <h2 className="cardList__error cardList__title">
+              Sorry!! Nothing to show please try again with different words
+            </h2>
+          )}
+        </div>
+      )}
+      {/* </div> */}
     </div>
   );
 };

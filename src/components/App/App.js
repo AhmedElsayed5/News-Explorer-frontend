@@ -23,6 +23,7 @@ function App() {
   const [showNewsCard, setShowNewsCard] = useState(
     () => localStorageCards.length
   );
+  const [dataError, setDataError] = useState("");
 
   // console.log();
   // const ifWeSearchedBefore = JSON.parse(localStorage.getItem("data") || []);
@@ -46,31 +47,50 @@ function App() {
           // setLocalStorageCards(JSON.stringify([]));
           console.log(res[0]);
         })
-        .catch((err) => console.error(err))
+        .catch((err) => {
+          console.error(err);
+          setDataError(err);
+        })
     ) : (
       <></>
     );
   }, [loading, searchValue]);
-
   useEffect(() => {
     setLoading(false);
-    // data.size ? console.log("data to show") : console.log("nothing");
   }, [data]);
 
   const onSignInModal = () => {
     setActiveModal("signInModal");
   };
 
-  // console.log(data[1]);
-
   const onSignUpModal = () => {
-    console.log("sign uppppp");
     setActiveModal("signUpModal");
   };
 
   const onCloseModal = () => {
     setActiveModal("");
   };
+  useEffect(() => {
+    if (!activeModal) return;
+
+    const handleEscClose = (e) => {
+      if (e.key === "Escape") {
+        onCloseModal();
+      }
+    };
+
+    const handleOutSideClick = (e) => {
+      if (e.target.className === "modal") onCloseModal();
+    };
+
+    document.addEventListener("click", handleOutSideClick);
+    document.addEventListener("keydown", handleEscClose);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+      document.removeEventListener("click", handleOutSideClick);
+    };
+  }, [activeModal]);
 
   return (
     <div>
@@ -94,7 +114,7 @@ function App() {
             title={"Everyone Needs a Special 'Sit Spot' in Nature"}
           /> */}
           {showNewsCard ? (
-            <NewsCardList cards={localStorageCards}>
+            <NewsCardList cards={localStorageCards} error={dataError}>
               {loading && <PreLoader></PreLoader>}
             </NewsCardList>
           ) : (

@@ -35,7 +35,7 @@ const SignInPopup = ({ onCloseModal, onSignUpModal, isOpen }) => {
           Email
           <input
             className="modal__input"
-            type="text"
+            type="email"
             name="email"
             minLength="1"
             maxLength="60"

@@ -1,8 +1,8 @@
 .cardList {
   padding-top: 80px;
   padding-bottom: 80px;
-  padding-right: 100px;
-  padding-left: 100px;
+  padding-right: 20px;
+  padding-left: 20px;
   background-color: #f5f6f7;
 }
 
@@ -33,9 +33,18 @@
 }
 
 .cardList__more-button {
+  font-family: "Roboto Slab", sans-serif;
   width: 288px;
   height: 64px;
   background-color: #e8e8e8;
   border-radius: 50px;
   border: none;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.cardList__more-button:hover {
+  cursor: pointer;
 }
