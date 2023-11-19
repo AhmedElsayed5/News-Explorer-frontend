@@ -1,7 +1,6 @@
 import Header from "../Header/Header";
 import { useState } from "react";
 import "./Main.css";
-import PreLoader from "../PreLoader/PreLoader";
 
 const Main = ({ onSignInModal, onSignUpModal, onCloseModal, onSearch }) => {
   const [search, setSearch] = useState("");
