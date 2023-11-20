@@ -3,8 +3,6 @@ import NewsCard from "../NewsCard/NewsCard";
 import "./NewsCardList.css";
 const NewsCardList = ({ children, cards, error }) => {
   const [numberOfCards, setNumberOfCards] = useState(3);
-  // cards.slice(0, 3);
-  console.log(cards.length);
 
   return (
     <div className="cardList">

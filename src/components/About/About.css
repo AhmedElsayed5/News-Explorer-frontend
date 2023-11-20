@@ -9,6 +9,7 @@
   justify-content: flex-start;
   position: relative;
   gap: 56px;
+  box-sizing: border-box;
 }
 
 .about__title {

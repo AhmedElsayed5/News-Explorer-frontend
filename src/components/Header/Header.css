@@ -10,6 +10,7 @@
   margin: 0;
   border-bottom: 2px solid;
   border-color: rgba(255, 255, 255, 0.2);
+  box-sizing: border-box;
   /* background: transparent; */
 }
 

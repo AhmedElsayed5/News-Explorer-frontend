@@ -9,6 +9,7 @@
   padding-right: 104px;
   font-family: "Roboto Slab", sans-serif;
   position: relative;
+  box-sizing: border-box;
 }
 
 .header-main {

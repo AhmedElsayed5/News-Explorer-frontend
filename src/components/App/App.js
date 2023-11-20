@@ -25,12 +25,7 @@ function App() {
   );
   const [dataError, setDataError] = useState("");
 
-  // console.log();
-  // const ifWeSearchedBefore = JSON.parse(localStorage.getItem("data") || []);
-  // console.log(localStorageCards.length);
-
   const onSearch = (value) => {
-    // setSearchButton(true);
     setShowNewsCard(true);
     setLoading(true);
     setSearchValue(value);
@@ -44,8 +39,6 @@ function App() {
           //set on local storage
           localStorage.setItem("data", JSON.stringify(res));
           setLocalStorageCards(JSON.parse(localStorage.getItem("data")));
-          // setLocalStorageCards(JSON.stringify([]));
-          console.log(res[0]);
         })
         .catch((err) => {
           console.error(err);
@@ -102,17 +95,7 @@ function App() {
             onCloseModal={onCloseModal}
             onSearch={onSearch}
           />
-          {/* {data[1]} */}
-          {/* <NewsCard
-            source_name={"treehugger"}
-            description={`Ever since I read Richard Louv's influential book, "Last Child in the
-          Woods," the idea of having a special "sit spot" has stuck with me. This
-          advice, which Louv attributes to nature educator Jon Young, is for both
-          adults and children to find...`}
-            urlToImage={cat}
-            publishedAt={"November 4, 2020"}
-            title={"Everyone Needs a Special 'Sit Spot' in Nature"}
-          /> */}
+
           {showNewsCard ? (
             <NewsCardList cards={localStorageCards} error={dataError}>
               {loading && <PreLoader></PreLoader>}
