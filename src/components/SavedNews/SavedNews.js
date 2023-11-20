@@ -6,8 +6,9 @@ const SavedNews = ({ onSignInModal, onSignUpModal, onCloseModal }) => {
         onSignInModal={onSignInModal}
         onSignUpModal={onSignUpModal}
         onCloseModal={onCloseModal}
+        currentPage={"Saved News"}
       />
-      <div>Saved News</div>
+      {/* <div>Saved News</div> */}
     </div>
   );
 };

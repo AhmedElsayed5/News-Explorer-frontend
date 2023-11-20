@@ -4,25 +4,23 @@ import PopupWithForm from "../PopupWithForm/PopupWithForm";
 const SignUpPopup = ({ onCloseModal, onSignInModal, isOpen }) => {
   const [name, setName] = useState("");
   const handleNameChange = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setName(e.target.value);
   };
 
   const [avatar, setUrl] = useState("");
   const handleUrlChange = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setUrl(e.target.value);
   };
 
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
-    console.log(e.target.value);
     setEmail(e.target.value);
   };
 
   const [password, setPassWord] = useState("");
   const handlePassWordChange = (e) => {
-    console.log(e.target.value);
     setPassWord(e.target.value);
   };
 

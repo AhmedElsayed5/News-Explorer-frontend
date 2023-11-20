@@ -4,20 +4,16 @@ import PopupWithForm from "../PopupWithForm/PopupWithForm";
 const SignInPopup = ({ onCloseModal, onSignUpModal, isOpen }) => {
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
-    console.log(e.target.value);
     setEmail(e.target.value);
   };
 
   const [password, setPassWord] = useState("");
   const handlePassWordChange = (e) => {
-    console.log(e.target.value);
     setPassWord(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email + " " + password);
-    // onLogIn({ email, password });
   };
 
   return (

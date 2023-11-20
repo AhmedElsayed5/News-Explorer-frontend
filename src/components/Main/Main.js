@@ -19,6 +19,7 @@ const Main = ({ onSignInModal, onSignUpModal, onCloseModal, onSearch }) => {
         onSignInModal={onSignInModal}
         onSignUpModal={onSignUpModal}
         onCloseModal={onCloseModal}
+        currentPage={"Home"}
       />
       <div className="main">
         <div className="main__title-paragraph">

@@ -8,7 +8,6 @@ const NewsCardList = ({ children, cards, error }) => {
     <div className="cardList">
       <header className="cardList__title">Search results</header>
       {children}
-      {console.log(error)}
       {/* <div className="cardList__container-button"> */}
       {cards.length ? (
         <div className="cardList__container-button">

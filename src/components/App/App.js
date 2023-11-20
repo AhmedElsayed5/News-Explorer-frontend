@@ -25,6 +25,8 @@ function App() {
   );
   const [dataError, setDataError] = useState("");
 
+  console.log(window.location.href);
+
   const onSearch = (value) => {
     setShowNewsCard(true);
     setLoading(true);
@@ -106,7 +108,7 @@ function App() {
 
           <About />
         </Route>
-        <Route exact path="/saved-news">
+        <Route exact path="/savednews">
           <SavedNews
             onSignInModal={onSignInModal}
             onSignUpModal={onSignUpModal}
