@@ -5,6 +5,13 @@
   padding-left: 20px;
   background-color: #f5f6f7;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cardList__content {
+  max-width: 1280px;
 }
 
 .cardList__title {
@@ -48,4 +55,14 @@
 
 .cardList__more-button:hover {
   cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .cardList__container {
+    gap: 8px;
+  }
+  .cardList__more-button {
+    width: 240px;
+    height: 56px;
+  }
 }

@@ -5,7 +5,7 @@ const About = () => {
     <div className="about">
       {/* <SignUpPopup /> */}
       <div>
-        <img src={aboutPic} alt="about"></img>
+        <img className="about__image" src={aboutPic} alt="about"></img>
       </div>
       <div className="about__title-paragraph">
         <h2 className="about__title">About the author</h2>

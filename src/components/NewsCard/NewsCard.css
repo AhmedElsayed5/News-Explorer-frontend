@@ -53,8 +53,8 @@
 }
 
 .card__description {
-  width: 352px;
-  height: 110px;
+  max-width: 352px;
+  max-height: 110px;
   margin: 0;
   font-family: "Roboto Slab", sans-serif;
   font-size: 16px;
@@ -82,11 +82,8 @@
 }
 
 .card__save-button {
-  /* position: absolute; */
   width: 40px;
   height: 40px;
-  /* top: 24px; */
-  /* right: 24px; */
   border-radius: 8px;
   background-color: #ffffff;
   padding-top: 6px;
@@ -140,4 +137,37 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    width: 224px;
+    height: 420px;
+  }
+  .card__image {
+    width: 224px;
+    height: 150px;
+  }
+  .card__tilte {
+    height: 72px;
+    font-size: 22px;
+    line-height: 24px;
+    -webkit-line-clamp: 3;
+  }
+  .card__tittle-padding {
+    padding-bottom: 8px;
+  }
+  .card__description {
+    width: 192px;
+    height: 88px;
+    display: -webkit-box;
+    overflow: hidden;
+  }
+  .card__save-button-container {
+    right: 8px;
+    top: 8px;
+  }
+  .card__source {
+    padding-top: 12px;
+  }
 }
