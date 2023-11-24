@@ -2,7 +2,13 @@ import Header from "../Header/Header";
 import { useState } from "react";
 import "./Main.css";
 
-const Main = ({ onSignInModal, onSignUpModal, onCloseModal, onSearch }) => {
+const Main = ({
+  onSignInModal,
+  onSignUpModal,
+  onCloseModal,
+  onSearch,
+  onMenuModal,
+}) => {
   const [search, setSearch] = useState("");
   const handleSearch = (e) => {
     // console.log(e.target.value);
@@ -19,15 +25,12 @@ const Main = ({ onSignInModal, onSignUpModal, onCloseModal, onSearch }) => {
         onSignInModal={onSignInModal}
         onSignUpModal={onSignUpModal}
         onCloseModal={onCloseModal}
+        onMenuModal={onMenuModal}
         currentPage={"Home"}
       />
       <div className="main">
         <div className="main__title-paragraph">
-          <h1 className="main__title">
-            What's going on in
-            <br />
-            the world?
-          </h1>
+          <h1 className="main__title">What's going on in the world?</h1>
 
           <div className="main__paragraph">
             Find the latest news on any topic and save them in your personal
@@ -35,7 +38,10 @@ const Main = ({ onSignInModal, onSignUpModal, onCloseModal, onSearch }) => {
           </div>
         </div>
         <div className="main__search-button-input">
-          <form onSubmit={onSubmitSearh}>
+          <form
+            onSubmit={onSubmitSearh}
+            className="main__search-button-input main__form"
+          >
             <input
               className="main__search-input-container"
               placeholder="Enter topic"

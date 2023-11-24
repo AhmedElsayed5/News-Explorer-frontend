@@ -4,6 +4,7 @@ import Footer from "../Footer/Footer.js";
 import SavedNews from "../SavedNews/SavedNews.js";
 import SignInPopup from "../SignInPopup/SignInPopup.js";
 import SignUpPopup from "../SignUpPopup/SignUpPopup.js";
+import PopupWithMenu from "../PopupWithMenu/PopupWithMenu.jsx";
 import { getItems } from "../../utils/Api.js";
 import { Switch, Route } from "react-router-dom/cjs/react-router-dom.min.js";
 import { useState, useEffect } from "react";
@@ -17,9 +18,12 @@ function App() {
   const [searchValue, setSearchValue] = useState("");
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [localStorageCards, setLocalStorageCards] = useState(() =>
-    JSON.parse(localStorage.getItem("data") || [])
-  );
+  const [localStorageCards, setLocalStorageCards] = useState(() => {
+    if (localStorage.getItem("data")) {
+      return JSON.parse(localStorage.getItem("data"));
+    }
+    return [];
+  });
   const [showNewsCard, setShowNewsCard] = useState(
     () => localStorageCards.length
   );
@@ -62,6 +66,10 @@ function App() {
     setActiveModal("signUpModal");
   };
 
+  const onMenuModal = () => {
+    setActiveModal("menuModal");
+  };
+
   const onCloseModal = () => {
     setActiveModal("");
   };
@@ -91,11 +99,13 @@ function App() {
     <div>
       <Switch>
         <Route exact path="/">
+          {/* <PopupWithMenu onCloseModal={onCloseModal} /> */}
           <Main
             onSignInModal={onSignInModal}
             onSignUpModal={onSignUpModal}
             onCloseModal={onCloseModal}
             onSearch={onSearch}
+            onMenuModal={onMenuModal}
           />
 
           {showNewsCard ? (
@@ -129,6 +139,13 @@ function App() {
           onSignInModal={onSignInModal}
           onCloseModal={onCloseModal}
         ></SignUpPopup>
+      )}
+      {activeModal === "menuModal" && (
+        <PopupWithMenu
+          onMenuModal={onMenuModal}
+          onCloseModal={onCloseModal}
+          onSignInModal={onSignInModal}
+        ></PopupWithMenu>
       )}
     </div>
   );

@@ -5,6 +5,7 @@ const Header = ({
   onSignInModal,
   onSignUpModal,
   onCloseModal,
+  onMenuModal,
   currentPage,
 }) => {
   return (
@@ -28,6 +29,15 @@ const Header = ({
           </Link>
         </div>
       )}
+      {/* <div className="header__menu-mobile-view"> */}
+      <button onClick={onMenuModal} className="header__menu-mobile-view-button">
+        {/* <div className="header__menu-mobile-view-button-container"> */}
+        {/* <img src={menu} alt="menu"></img> */}
+        {/* </div> */}
+        <div className="header__menu-mobile-view-button-design"></div>
+        <div className="header__menu-mobile-view-button-design"></div>
+      </button>
+      {/* </div> */}
       <div className="header__buttons">
         {currentPage === "Home" ? (
           <div className="header__button-container">

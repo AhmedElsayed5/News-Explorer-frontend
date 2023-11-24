@@ -1,0 +1,105 @@
+.Menu__Modal {
+  display: none;
+}
+
+@media screen and (max-width: 320px) {
+  .Menu__Modal {
+    position: fixed;
+    z-index: 1;
+    height: 500px;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .Menu__Modal-header-content {
+    z-index: 1;
+    width: 320px;
+    height: 230px;
+    position: fixed;
+    background-color: black;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  .Menu__Modal-header-title {
+    color: white;
+    font-family: "Roboto Slab", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    margin: 0;
+  }
+  .Menu__Modal-header {
+    box-sizing: border-box;
+    width: 320px;
+    height: 56px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid;
+    border-bottom-color: white;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .modal__close-button-menu-modal {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    border: none;
+  }
+  .modal__close-button-menu-modal-image {
+    width: 24px;
+    height: 24px;
+  }
+  .Menu__Modal-content {
+    height: 174px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 22px;
+  }
+  .Menu__Modal-button {
+    width: 288px;
+    height: 56px;
+    color: white;
+    background-color: black;
+    border-style: none;
+    font-family: "Roboto Slab", sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 56px;
+    padding: 0px;
+  }
+  .Menu__Modal-button-home {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .Menu__Modal-button-signin {
+    border: 1px solid white;
+    border-radius: 100px;
+  }
+  .Menu__Modal-remaining {
+    /* z-index: 1; */
+    opacity: 0.5;
+    width: 320px;
+    height: 330px;
+    background-color: black;
+    opacity: 0.5;
+  }
+  .Menu__Modal-button-signin:hover {
+    cursor: pointer;
+  }
+}
