@@ -6,7 +6,7 @@ import SignInPopup from "../SignInPopup/SignInPopup.js";
 import SignUpPopup from "../SignUpPopup/SignUpPopup.js";
 import PopupWithMenu from "../PopupWithMenu/PopupWithMenu.jsx";
 import { getItems } from "../../utils/Api.js";
-import { Switch, Route } from "react-router-dom/cjs/react-router-dom.min.js";
+import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import PreLoader from "../PreLoader/PreLoader.js";
 import NewsCardList from "../NewsCardList/NewsCardList.jsx";
@@ -97,17 +97,20 @@ function App() {
 
   return (
     <div>
-      <Switch>
-        <Route exact path="/">
-          {/* <PopupWithMenu onCloseModal={onCloseModal} /> */}
-          <Main
-            onSignInModal={onSignInModal}
-            onSignUpModal={onSignUpModal}
-            onCloseModal={onCloseModal}
-            onSearch={onSearch}
-            onMenuModal={onMenuModal}
-          />
-
+      <Routes>
+        <Route
+          exact
+          path="/"
+          element={
+            <Main
+              onSignInModal={onSignInModal}
+              onSignUpModal={onSignUpModal}
+              onCloseModal={onCloseModal}
+              onSearch={onSearch}
+              onMenuModal={onMenuModal}
+            />
+          }
+        >
           {showNewsCard ? (
             <NewsCardList cards={localStorageCards} error={dataError}>
               {loading && <PreLoader></PreLoader>}
@@ -125,7 +128,7 @@ function App() {
             onCloseModal={onCloseModal}
           />
         </Route>
-      </Switch>
+      </Routes>
 
       <Footer />
       {activeModal === "signInModal" && (
