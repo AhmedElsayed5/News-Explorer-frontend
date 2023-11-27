@@ -123,6 +123,7 @@ function App() {
             onSignInModal={onSignInModal}
             onSignUpModal={onSignUpModal}
             onCloseModal={onCloseModal}
+            onMenuModal={onMenuModal}
           />
         </Route>
       </Switch>

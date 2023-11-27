@@ -11,13 +11,10 @@ const Header = ({
   return (
     <header
       className={
-        currentPage === "Home"
-          ? "header"
-          : "header header__saved-news"`modal__blury-filter`
+        currentPage === "Home" ? "header" : "header header__saved-news"
       }
       style={{ backgroundImage: "../../topBackground.svg" }}
     >
-      {/* header */}
       {currentPage === "Home" ? (
         <div>
           <Link className={`header__logo header__home`} to="/">
@@ -31,15 +28,10 @@ const Header = ({
           </Link>
         </div>
       )}
-      {/* <div className="header__menu-mobile-view"> */}
       <button onClick={onMenuModal} className="header__menu-mobile-view-button">
-        {/* <div className="header__menu-mobile-view-button-container"> */}
-        {/* <img src={menu} alt="menu"></img> */}
-        {/* </div> */}
         <div className="header__menu-mobile-view-button-design"></div>
         <div className="header__menu-mobile-view-button-design"></div>
       </button>
-      {/* </div> */}
       <div className="header__buttons">
         {currentPage === "Home" ? (
           <div className="header__button-container">
@@ -92,11 +84,6 @@ const Header = ({
             Sign-in
           </button>
         )}
-        {/* <button className="header__button">
-          <Link to="saved-news" className="header__button header__link">
-            Saved articles
-          </Link>
-        </button> */}
       </div>
     </header>
   );
