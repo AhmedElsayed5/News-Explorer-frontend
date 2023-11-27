@@ -121,7 +121,7 @@
   .header__menu-mobile-view-button {
     width: 24px;
     height: 24px;
-    background-color: black;
+    background-color: transparent;
     padding: 0px;
     border-width: 0px;
     display: flex;

@@ -67,7 +67,8 @@
 }
 
 .modal__button-submit {
-  width: 360px;
+  /* width: 360px; */
+  width: 100%;
   height: 64px;
   box-sizing: border-box;
   padding: 0px;
@@ -129,4 +130,21 @@
 
 .modal__button-other-option-signup-only {
   padding-bottom: 20px;
+}
+
+@media screen and (max-width: 320px) {
+  .modal {
+    position: fixed;
+    top: 65px;
+    bottom: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  .modal__content {
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    height: 100lvh;
+  }
+  .modal__close-button {
+    right: 35px;
+  }
 }

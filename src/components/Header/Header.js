@@ -11,7 +11,9 @@ const Header = ({
   return (
     <header
       className={
-        currentPage === "Home" ? "header" : "header header__saved-news"
+        currentPage === "Home"
+          ? "header"
+          : "header header__saved-news"`modal__blury-filter`
       }
       style={{ backgroundImage: "../../topBackground.svg" }}
     >

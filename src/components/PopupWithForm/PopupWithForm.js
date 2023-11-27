@@ -12,6 +12,7 @@ const ModalWithForm = ({
   onSubmit, //
 }) => {
   return (
+    // <div className={`modal__blury-filter`}>
     <div className={`modal`}>
       <div className="modal__content">
         <button
@@ -58,6 +59,7 @@ const ModalWithForm = ({
         </form>
       </div>
     </div>
+    // </div>
   );
 };
 
