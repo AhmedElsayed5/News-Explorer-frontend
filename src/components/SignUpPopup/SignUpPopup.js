@@ -8,12 +8,6 @@ const SignUpPopup = ({ onCloseModal, onSignInModal, isOpen }) => {
     setName(e.target.value);
   };
 
-  const [avatar, setUrl] = useState("");
-  const handleUrlChange = (e) => {
-    // console.log(e.target.value);
-    setUrl(e.target.value);
-  };
-
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -26,7 +20,6 @@ const SignUpPopup = ({ onCloseModal, onSignInModal, isOpen }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // onSignUp({ email, password, name, avatar });
   };
 
   return (

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import NewsCard from "../NewsCard/NewsCard";
 import "./NewsCardList.css";
-const NewsCardList = ({ children, cards, error }) => {
+
+const NewsCardList = ({ children, cards, error, checkSaveStatus }) => {
   const [numberOfCards, setNumberOfCards] = useState(3);
 
   return (
@@ -15,12 +16,9 @@ const NewsCardList = ({ children, cards, error }) => {
             <div className="cardList__container">
               {cards?.slice(0, numberOfCards).map((card, key) => (
                 <NewsCard
+                  {...card}
                   key={key}
-                  source_name={card.source.name}
-                  title={card.title}
-                  publishedAt={card.publishedAt}
-                  description={card.description}
-                  urlToImage={card.urlToImage}
+                  checkSaveStatus={checkSaveStatus}
                 />
               ))}
             </div>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 
-const SignInPopup = ({ onCloseModal, onSignUpModal, isOpen }) => {
+const SignInPopup = ({ onCloseModal, onSignUpModal, isOpen, onSignIn }) => {
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -14,6 +14,7 @@ const SignInPopup = ({ onCloseModal, onSignUpModal, isOpen }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    onSignIn({ email, password });
   };
 
   return (

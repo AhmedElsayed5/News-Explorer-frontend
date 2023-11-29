@@ -8,28 +8,63 @@ import PopupWithMenu from "../PopupWithMenu/PopupWithMenu.jsx";
 import { getItems } from "../../utils/Api.js";
 import { Route, Switch } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext.js";
+import { SavedCardsContext } from "../../contexts/SavedCardsContext.js";
 import PreLoader from "../PreLoader/PreLoader.js";
 import NewsCardList from "../NewsCardList/NewsCardList.jsx";
 
 function App() {
-  // state for preloader if runs and no data available
-  // save data at local storage
   const [activeModal, setActiveModal] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
+  const [savedCardsState, setSavedCardsState] = useState([]);
+
+  const onSignIn = ({ email, password }) => {
+    setCurrentUser({ email, password });
+    onCloseModal();
+  };
+
+  const onSignOut = () => {
+    setCurrentUser({});
+    onCloseModal();
+  };
+
+  const deleteFromSavedCards = (props) => {
+    let newCards;
+    newCards = savedCardsState.filter((item) => item.title !== props.title);
+    setSavedCardsState(newCards);
+  };
+
+  const addToSavedCards = (props) => {
+    setSavedCardsState((prevState) => [...prevState, props]);
+  };
+
+  const checkSaveStatus = (props) => {
+    const check =
+      savedCardsState.length &&
+      savedCardsState.some((item) => props.title === item.title);
+    check ? deleteFromSavedCards(props) : addToSavedCards(props);
+  };
+
+  // to check savedCards content
+  useEffect(() => {
+    console.log(savedCardsState);
+  }, [savedCardsState]);
+
   const [localStorageCards, setLocalStorageCards] = useState(() => {
     if (localStorage.getItem("data")) {
       return JSON.parse(localStorage.getItem("data"));
     }
     return [];
   });
+
   const [showNewsCard, setShowNewsCard] = useState(
     () => localStorageCards.length
   );
-  const [dataError, setDataError] = useState("");
 
-  console.log(window.location.href);
+  const [dataError, setDataError] = useState("");
 
   const onSearch = (value) => {
     setShowNewsCard(true);
@@ -96,59 +131,81 @@ function App() {
   }, [activeModal]);
 
   return (
-    <div>
-      <Switch>
-        <Route exact path="/">
-          {/* <PopupWithMenu onCloseModal={onCloseModal} /> */}
-          <Main
-            onSignInModal={onSignInModal}
-            onSignUpModal={onSignUpModal}
-            onCloseModal={onCloseModal}
-            onSearch={onSearch}
-            onMenuModal={onMenuModal}
-          />
+    <>
+      <CurrentUserContext.Provider value={{ currentUser }}>
+        <SavedCardsContext.Provider value={{ savedCardsState }}>
+          <Switch>
+            <Route exact path="/">
+              {/* <PopupWithMenu onCloseModal={onCloseModal} /> */}
+              <Main
+                onSignInModal={onSignInModal}
+                onSignUpModal={onSignUpModal}
+                onCloseModal={onCloseModal}
+                onSearch={onSearch}
+                onSignOut={onSignOut}
+                onMenuModal={onMenuModal}
+              />
 
-          {showNewsCard ? (
-            <NewsCardList cards={localStorageCards} error={dataError}>
-              {loading && <PreLoader></PreLoader>}
-            </NewsCardList>
-          ) : (
-            <></>
+              {showNewsCard ? (
+                <NewsCardList
+                  cards={localStorageCards}
+                  error={dataError}
+                  checkSaveStatus={checkSaveStatus}
+                >
+                  {loading && <PreLoader></PreLoader>}
+                </NewsCardList>
+              ) : (
+                <></>
+              )}
+
+              <About />
+            </Route>
+            <Route exact path="/savednews">
+              <SavedNews
+                onSignInModal={onSignInModal}
+                onSignUpModal={onSignUpModal}
+                onCloseModal={onCloseModal}
+                onMenuModal={onMenuModal}
+              />
+              {showNewsCard ? (
+                <NewsCardList
+                  cards={localStorageCards}
+                  error={dataError}
+                  checkSaveStatus={checkSaveStatus}
+                >
+                  {loading && <PreLoader></PreLoader>}
+                </NewsCardList>
+              ) : (
+                <></>
+              )}
+            </Route>
+          </Switch>
+
+          <Footer />
+          {activeModal === "signInModal" && (
+            <SignInPopup
+              onSignUpModal={onSignUpModal}
+              onCloseModal={onCloseModal}
+              onSignIn={onSignIn}
+            ></SignInPopup>
           )}
-
-          <About />
-        </Route>
-        <Route exact path="/savednews">
-          <SavedNews
-            onSignInModal={onSignInModal}
-            onSignUpModal={onSignUpModal}
-            onCloseModal={onCloseModal}
-            onMenuModal={onMenuModal}
-          />
-        </Route>
-      </Switch>
-
-      <Footer />
-      {activeModal === "signInModal" && (
-        <SignInPopup
-          onSignUpModal={onSignUpModal}
-          onCloseModal={onCloseModal}
-        ></SignInPopup>
-      )}
-      {activeModal === "signUpModal" && (
-        <SignUpPopup
-          onSignInModal={onSignInModal}
-          onCloseModal={onCloseModal}
-        ></SignUpPopup>
-      )}
-      {activeModal === "menuModal" && (
-        <PopupWithMenu
-          onMenuModal={onMenuModal}
-          onCloseModal={onCloseModal}
-          onSignInModal={onSignInModal}
-        ></PopupWithMenu>
-      )}
-    </div>
+          {activeModal === "signUpModal" && (
+            <SignUpPopup
+              onSignInModal={onSignInModal}
+              onCloseModal={onCloseModal}
+            ></SignUpPopup>
+          )}
+          {activeModal === "menuModal" && (
+            <PopupWithMenu
+              onMenuModal={onMenuModal}
+              onCloseModal={onCloseModal}
+              onSignInModal={onSignInModal}
+              onSignOut={onSignOut}
+            ></PopupWithMenu>
+          )}
+        </SavedCardsContext.Provider>
+      </CurrentUserContext.Provider>
+    </>
   );
 }
 

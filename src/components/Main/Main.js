@@ -1,4 +1,5 @@
 import Header from "../Header/Header";
+
 import { useState } from "react";
 import "./Main.css";
 
@@ -8,10 +9,10 @@ const Main = ({
   onCloseModal,
   onSearch,
   onMenuModal,
+  onSignOut,
 }) => {
   const [search, setSearch] = useState("");
   const handleSearch = (e) => {
-    // console.log(e.target.value);
     setSearch(e.target.value);
   };
 
@@ -26,6 +27,7 @@ const Main = ({
         onSignUpModal={onSignUpModal}
         onCloseModal={onCloseModal}
         onMenuModal={onMenuModal}
+        onSignOut={onSignOut}
         currentPage={"Home"}
       />
       <div className="main">

@@ -1,21 +1,34 @@
-// import cat from "../../images/cat.svg";
 import "./NewsCard.css";
+import React, { useContext, useEffect } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { SavedCardsContext } from "../../contexts/SavedCardsContext";
 import bookMark from "../../images/bookmark.svg";
+import bookMarkSaved from "../../images/bookmark-saved.svg";
 import { useState } from "react";
 
-const NewsCard = ({
-  source_name,
-  title,
-  publishedAt,
-  description,
-  urlToImage,
-}) => {
-  // const [like, setLike] = useState(false);
-  // // to convert dates
-  // const changelike = () => {
-  //   setLike(!like);
-  // };
+const NewsCard = (props) => {
+  const {
+    source,
+    title,
+    publishedAt,
+    description,
+    urlToImage,
+    checkSaveStatus,
+  } = props;
   const [isHovered, setHover] = useState(false);
+  const { currentUser } = useContext(CurrentUserContext);
+  const { savedCardsState } = useContext(SavedCardsContext);
+
+  const [isSaved, setIsSaved] = useState(
+    savedCardsState
+      ? savedCardsState?.some((item) => title === item.title)
+      : false
+  );
+
+  useEffect(
+    () => setIsSaved(savedCardsState?.some((item) => title === item.title)),
+    [savedCardsState, title]
+  );
   function formatDate(string) {
     var options = { year: "numeric", month: "long", day: "numeric" };
     return new Date(string).toLocaleDateString([], options);
@@ -30,7 +43,7 @@ const NewsCard = ({
       >
         <div
           className={
-            isHovered
+            isHovered && !currentUser.email
               ? `card__save-button-message-container`
               : `card__save-button-message-container-hidden`
           }
@@ -40,11 +53,25 @@ const NewsCard = ({
           </p>
         </div>
         <button className="card__save-button">
-          <img
-            className="card__save-button-image"
-            src={bookMark}
-            alt="save-button"
-          />
+          {isSaved && currentUser.email ? (
+            <img
+              className="card__save-button-image"
+              src={bookMarkSaved}
+              alt="save-button"
+              onClick={() => {
+                currentUser.email && checkSaveStatus(title);
+              }}
+            />
+          ) : (
+            <img
+              className="card__save-button-image"
+              src={bookMark}
+              alt="save-button"
+              onClick={() => {
+                currentUser.email && checkSaveStatus({ ...props });
+              }}
+            />
+          )}
         </button>
       </div>
 
@@ -55,7 +82,7 @@ const NewsCard = ({
           <p className="card__tilte">{title}</p>
         </div>
         <p className="card__description">{description}</p>
-        <p className="card__source">{source_name}</p>
+        <p className="card__source">{source.name}</p>
       </div>
     </div>
   );
