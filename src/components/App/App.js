@@ -1,7 +1,7 @@
 import Main from "../Main/Main.js";
 import About from "../About/About.js";
 import Footer from "../Footer/Footer.js";
-import SavedNews from "../SavedNews/SavedNews.js";
+import SavedNews from "../SavedNews/SavedNews.jsx";
 import SignInPopup from "../SignInPopup/SignInPopup.js";
 import SignUpPopup from "../SignUpPopup/SignUpPopup.js";
 import PopupWithMenu from "../PopupWithMenu/PopupWithMenu.jsx";
@@ -15,7 +15,16 @@ import NewsCardList from "../NewsCardList/NewsCardList.jsx";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState(() => {
+    if (localStorage.getItem("search")) {
+      return localStorage.getItem("search");
+    }
+    return "";
+  });
+
+  // useEffect(() => {
+  //   console.log(searchValue);
+  // }, [searchValue]);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
@@ -32,26 +41,38 @@ function App() {
   };
 
   const deleteFromSavedCards = (props) => {
+    console.log(props);
     let newCards;
-    newCards = savedCardsState.filter((item) => item.title !== props.title);
+    newCards = savedCardsState.filter(
+      (item) => item?.props?.title !== props.title
+    );
     setSavedCardsState(newCards);
   };
 
+  // const capitalize = () => {};
+
   const addToSavedCards = (props) => {
-    setSavedCardsState((prevState) => [...prevState, props]);
+    let searchValuetoUpper =
+      searchValue.charAt(0).toUpperCase() + searchValue.slice(1);
+    setSavedCardsState((prevState) => [
+      ...prevState,
+      { props, keyword: searchValuetoUpper },
+    ]);
   };
 
   const checkSaveStatus = (props) => {
+    console.log(props);
+    // savedCardsState?.length === 0 ? addToSavedCards(props),return : <></>;
     const check =
-      savedCardsState.length &&
-      savedCardsState.some((item) => props.title === item.title);
+      // savedCardsState?.length === 0 &&
+      savedCardsState?.some((item) => props?.title === item?.props?.title);
     check ? deleteFromSavedCards(props) : addToSavedCards(props);
   };
 
   // to check savedCards content
-  useEffect(() => {
-    console.log(savedCardsState);
-  }, [savedCardsState]);
+  // useEffect(() => {
+  //   console.log(savedCardsState);
+  // }, [savedCardsState]);
 
   const [localStorageCards, setLocalStorageCards] = useState(() => {
     if (localStorage.getItem("data")) {
@@ -70,6 +91,7 @@ function App() {
     setShowNewsCard(true);
     setLoading(true);
     setSearchValue(value);
+    localStorage.setItem("search", value);
   };
 
   useEffect(() => {

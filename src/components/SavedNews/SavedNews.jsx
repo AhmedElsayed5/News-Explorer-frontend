@@ -1,4 +1,5 @@
 import Header from "../Header/Header";
+import SavedNewsAbout from "../SavedNewsInfo/SavedNewsInfo";
 
 const SavedNews = ({
   onSignInModal,
@@ -15,6 +16,7 @@ const SavedNews = ({
         onMenuModal={onMenuModal}
         currentPage={"Saved News"}
       />
+      <SavedNewsAbout />
     </div>
   );
 };

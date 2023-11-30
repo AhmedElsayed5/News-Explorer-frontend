@@ -26,7 +26,8 @@ const NewsCard = (props) => {
   );
 
   useEffect(
-    () => setIsSaved(savedCardsState?.some((item) => title === item.title)),
+    () =>
+      setIsSaved(savedCardsState?.some((item) => title === item.props.title)),
     [savedCardsState, title]
   );
   function formatDate(string) {
@@ -59,7 +60,7 @@ const NewsCard = (props) => {
               src={bookMarkSaved}
               alt="save-button"
               onClick={() => {
-                currentUser.email && checkSaveStatus(title);
+                currentUser.email && checkSaveStatus({ ...props });
               }}
             />
           ) : (
