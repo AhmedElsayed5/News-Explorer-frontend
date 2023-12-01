@@ -12,7 +12,6 @@ const PopupWithMenu = ({
   currentPage,
 }) => {
   const { currentUser } = useContext(CurrentUserContext);
-  // console.log("Menu Modal");
   return (
     <div className={`Menu__Modal`}>
       <div className="Menu__Modal-header-content">

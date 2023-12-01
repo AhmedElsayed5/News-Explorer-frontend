@@ -1,6 +1,6 @@
 import Main from "../Main/Main.js";
 import About from "../About/About.js";
-import Footer from "../Footer/Footer.js";
+import Footer from "../Footer/Footer.jsx";
 import SavedNews from "../SavedNews/SavedNews.jsx";
 import SignInPopup from "../SignInPopup/SignInPopup.js";
 import SignUpPopup from "../SignUpPopup/SignUpPopup.js";
@@ -22,9 +22,6 @@ function App() {
     return "";
   });
 
-  // useEffect(() => {
-  //   console.log(searchValue);
-  // }, [searchValue]);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
@@ -41,15 +38,12 @@ function App() {
   };
 
   const deleteFromSavedCards = (props) => {
-    console.log(props);
     let newCards;
     newCards = savedCardsState.filter(
       (item) => item?.props?.title !== props.title
     );
     setSavedCardsState(newCards);
   };
-
-  // const capitalize = () => {};
 
   const addToSavedCards = (props) => {
     let searchValuetoUpper =
@@ -61,18 +55,11 @@ function App() {
   };
 
   const checkSaveStatus = (props) => {
-    console.log(props);
-    // savedCardsState?.length === 0 ? addToSavedCards(props),return : <></>;
-    const check =
-      // savedCardsState?.length === 0 &&
-      savedCardsState?.some((item) => props?.title === item?.props?.title);
+    const check = savedCardsState?.some(
+      (item) => props?.title === item?.props?.title
+    );
     check ? deleteFromSavedCards(props) : addToSavedCards(props);
   };
-
-  // to check savedCards content
-  // useEffect(() => {
-  //   console.log(savedCardsState);
-  // }, [savedCardsState]);
 
   const [localStorageCards, setLocalStorageCards] = useState(() => {
     if (localStorage.getItem("data")) {
@@ -99,7 +86,6 @@ function App() {
       getItems(searchValue)
         .then((res) => {
           setData(res);
-          //set on local storage
           localStorage.setItem("data", JSON.stringify(res));
           setLocalStorageCards(JSON.parse(localStorage.getItem("data")));
         })
@@ -191,7 +177,7 @@ function App() {
               />
               {showNewsCard ? (
                 <NewsCardList
-                  cards={localStorageCards}
+                  cards={savedCardsState}
                   error={dataError}
                   checkSaveStatus={checkSaveStatus}
                 >

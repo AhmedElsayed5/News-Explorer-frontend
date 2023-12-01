@@ -1,4 +1,3 @@
-// parameters for everything endpoint
 const apiKey = "5e8acd24b2fa44d4b9ed1feb7645978c";
 const date = new Date();
 const tempTo = date.toISOString();

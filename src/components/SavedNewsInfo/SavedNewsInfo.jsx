@@ -3,7 +3,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { SavedCardsContext } from "../../contexts/SavedCardsContext.js";
 import "./SavedNewsInfo.css";
 
-const SavedNewsAbout = () => {
+const SavedNewsInfo = () => {
   const { currentUser } = useContext(CurrentUserContext);
   const { savedCardsState } = useContext(SavedCardsContext);
   const [keywordState, setKeyWordState] = useState([]);
@@ -15,8 +15,6 @@ const SavedNewsAbout = () => {
       );
     setKeyWordState(keywordList);
   }, [savedCardsState]);
-
-  // console.log(keywordState);
 
   const checkKeywords = () => {
     let kewordString = "";
@@ -35,7 +33,6 @@ const SavedNewsAbout = () => {
     console.log(kewordString);
     return kewordString;
   };
-  // const { savedCardsState } = useContext(SavedCardsContext);
   return (
     <div className="saved-news__info">
       <p className="saved-news__header">Saved articles</p>
@@ -45,15 +42,15 @@ const SavedNewsAbout = () => {
           {savedCardsState ? savedCardsState?.length : 0} saved articles
         </h1>
       </div>
-
-      <p className="saved-news__conclusion">
-        By keywords:{" "}
+      <div className="saved-news__conclusion">
+        By keywords:
         <p className="saved-news__conclusion saved-news__conculusion-bold">
           {checkKeywords()}{" "}
         </p>
-      </p>
+      </div>
+      {/* </div> */}
     </div>
   );
 };
 
-export default SavedNewsAbout;
+export default SavedNewsInfo;

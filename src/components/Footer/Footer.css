@@ -31,11 +31,15 @@
   gap: 26px;
 }
 
+.footer__links {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+
 .footer__link {
   text-decoration: none;
   color: black;
-  display: flex;
-  gap: 40px;
 }
 @media screen and (max-width: 768px) {
   .footer {

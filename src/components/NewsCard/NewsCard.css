@@ -129,10 +129,32 @@
   justify-content: center;
 }
 
+.card__keyword {
+  background-color: white;
+  padding-left: 22px;
+  padding-right: 22px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  border-radius: 10px;
+}
+
+.card__keyword-title {
+  margin: 0;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+}
+
 .card__save-button-message {
   color: #000;
   text-align: center;
-  font-family: , sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 12px;
   font-style: normal;
   font-weight: 500;

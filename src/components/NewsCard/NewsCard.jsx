@@ -4,9 +4,19 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { SavedCardsContext } from "../../contexts/SavedCardsContext";
 import bookMark from "../../images/bookmark.svg";
 import bookMarkSaved from "../../images/bookmark-saved.svg";
+import trash from "../../images/trash.svg";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const NewsCard = (props) => {
+  const location = useLocation();
+  const [currentCard, setCurrentCard] = useState({});
+
+  useEffect(() => {
+    if (location.pathname === "/") {
+      setCurrentCard(props);
+    } else setCurrentCard(props);
+  }, [location, props]);
   const {
     source,
     title,
@@ -14,7 +24,8 @@ const NewsCard = (props) => {
     description,
     urlToImage,
     checkSaveStatus,
-  } = props;
+  } = currentCard;
+
   const [isHovered, setHover] = useState(false);
   const { currentUser } = useContext(CurrentUserContext);
   const { savedCardsState } = useContext(SavedCardsContext);
@@ -23,6 +34,10 @@ const NewsCard = (props) => {
     savedCardsState
       ? savedCardsState?.some((item) => title === item.title)
       : false
+  );
+
+  const keyWordToShow = savedCardsState?.find(
+    (item) => item?.props?.title === title
   );
 
   useEffect(
@@ -37,44 +52,77 @@ const NewsCard = (props) => {
 
   return (
     <div className="card">
-      <div
-        className="card__save-button-container"
-        onMouseEnter={() => setHover(true)}
-        onMouseLeave={() => setHover(false)}
-      >
+      {location.pathname === "/" ? (
         <div
-          className={
-            isHovered && !currentUser.email
-              ? `card__save-button-message-container`
-              : `card__save-button-message-container-hidden`
-          }
+          className="card__save-button-container"
+          onMouseEnter={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
         >
-          <p className={`card__save-button-message`}>
-            Sign in to save articles
-          </p>
+          <div
+            className={
+              isHovered && !currentUser.email
+                ? `card__save-button-message-container`
+                : `card__save-button-message-container-hidden`
+            }
+          >
+            <p className={`card__save-button-message`}>
+              Sign in to save articles
+            </p>
+          </div>
+          <button className="card__save-button">
+            {isSaved && currentUser.email && location.pathname === "/" ? (
+              <img
+                className="card__save-button-image"
+                src={bookMarkSaved}
+                alt="save-button"
+                onClick={() => {
+                  currentUser.email && checkSaveStatus({ ...props });
+                }}
+              />
+            ) : (
+              <img
+                className="card__save-button-image"
+                src={bookMark}
+                alt="save-button"
+                onClick={() => {
+                  currentUser.email && checkSaveStatus({ ...props });
+                }}
+              />
+            )}
+          </button>
         </div>
-        <button className="card__save-button">
-          {isSaved && currentUser.email ? (
-            <img
-              className="card__save-button-image"
-              src={bookMarkSaved}
-              alt="save-button"
-              onClick={() => {
-                currentUser.email && checkSaveStatus({ ...props });
-              }}
-            />
-          ) : (
-            <img
-              className="card__save-button-image"
-              src={bookMark}
-              alt="save-button"
-              onClick={() => {
-                currentUser.email && checkSaveStatus({ ...props });
-              }}
-            />
-          )}
-        </button>
-      </div>
+      ) : (
+        <>
+          <div className="card__keyword">
+            <p className="card__keyword-title">{keyWordToShow?.keyword}</p>
+          </div>
+          <div
+            className="card__save-button-container"
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
+          >
+            <div
+              className={
+                isHovered
+                  ? `card__save-button-message-container`
+                  : `card__save-button-message-container-hidden`
+              }
+            >
+              <p className={`card__save-button-message`}>Remove from saved</p>
+            </div>
+            <button className="card__save-button">
+              <img
+                className="card__save-button-image"
+                src={trash}
+                alt="save-button"
+                onClick={() => {
+                  checkSaveStatus({ ...props });
+                }}
+              />
+            </button>
+          </div>
+        </>
+      )}
 
       <img className="card__image" src={urlToImage} alt="card" />
       <div className="card__info">
@@ -83,7 +131,8 @@ const NewsCard = (props) => {
           <p className="card__tilte">{title}</p>
         </div>
         <p className="card__description">{description}</p>
-        <p className="card__source">{source.name}</p>
+
+        <p className="card__source">{source?.name}</p>
       </div>
     </div>
   );
