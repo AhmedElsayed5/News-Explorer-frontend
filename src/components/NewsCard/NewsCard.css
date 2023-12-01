@@ -192,4 +192,8 @@
   .card__source {
     padding-top: 12px;
   }
+  .card__keyword {
+    top: 8px;
+    left: 7px;
+  }
 }

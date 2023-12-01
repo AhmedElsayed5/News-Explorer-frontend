@@ -30,7 +30,6 @@ const SavedNewsInfo = () => {
       kewordString += keywordState?.length - 2;
       kewordString += " more.";
     }
-    console.log(kewordString);
     return kewordString;
   };
   return (

@@ -76,7 +76,7 @@
 }
 
 .header__button-home-highliter {
-  max-width: 68px;
+  width: 66px;
   height: 3px;
   background-color: white;
   position: absolute;
@@ -85,9 +85,9 @@
 }
 
 .header__button-saved-news-highliter {
-  max-width: 178px;
+  width: 140px;
   background-color: black;
-  right: -33px;
+  right: -12px;
 }
 
 .header__link {
@@ -125,6 +125,10 @@
   }
   .header__buttons {
     gap: 20px;
+  }
+  .header__button-saved-news-highliter {
+    width: 130px;
+    right: -9px;
   }
 }
 
