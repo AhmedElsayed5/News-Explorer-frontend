@@ -1,7 +1,6 @@
 .about {
   padding-top: 80px;
   padding-bottom: 80px;
-  font-family: "Roboto Slab", sans-serif;
   padding-left: 104px;
   padding-right: 104px;
   display: flex;
@@ -12,6 +11,12 @@
   box-sizing: border-box;
 }
 
+.about__paragraph__container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
 .about__title {
   padding-top: 50px;
   font-size: 40px;
@@ -20,6 +25,7 @@
   line-height: 46px;
   margin: 0px;
   padding-bottom: 24px;
+  font-family: "Roboto Slab", serif;
 }
 
 .about__paragraph {
@@ -28,6 +34,7 @@
   font-weight: 400;
   line-height: 24px;
   margin: 0px;
+  font-family: "Roboto", serif;
 }
 
 .about__title-paragraph {
@@ -37,34 +44,52 @@
 
 @media screen and (max-width: 768px) {
   .about {
-    padding-top: 40px;
+    position: relative;
+    padding-top: 61px;
     padding-left: 40px;
     padding-right: 40px;
-    padding-bottom: 124px;
+    padding-bottom: 61px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
   }
   .about__image {
     width: 232px;
     height: 232px;
   }
   .about__title {
+    position: absolute;
+    top: 40px;
+    left: 304px;
     font-size: 30px;
     padding-top: 0px;
-    padding-bottom: 0px;
     line-height: 40px;
+    padding-bottom: 16px;
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 690px) {
+  .about {
+    padding-top: 100px;
+  }
+}
+
+@media screen and (max-width: 555px) {
   .about {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 24px;
-    /* padding-top: 80px; */
-    /* padding-bottom: 80px; */
     padding-top: 32px;
-    padding-bottom: 124px;
-    padding-left: 24px;
-    padding-right: 24px;
+    padding-bottom: 128px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .about__title {
+    position: static;
+  }
+  .about__image {
+    width: 272px;
+    height: 272px;
   }
 }

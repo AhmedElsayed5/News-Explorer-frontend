@@ -7,7 +7,6 @@
   padding-bottom: 80px;
   padding-left: 104px;
   padding-right: 104px;
-  font-family: "Roboto Slab", sans-serif;
   position: relative;
   box-sizing: border-box;
 }
@@ -24,6 +23,7 @@
 }
 
 .main__title {
+  font-family: "Roboto Slab", serif;
   margin: 0px;
   font-size: 60px;
   font-style: normal;
@@ -34,6 +34,7 @@
 }
 
 .main__paragraph {
+  font-family: "Roboto", serif;
   max-width: 608px;
   font-size: 18px;
   font-style: normal;
@@ -49,9 +50,10 @@
 }
 
 .main__search-button {
+  font-family: "Roboto", serif;
   padding: 0px;
   width: 168px;
-  height: 68px;
+  height: 64px;
   border-radius: 100px;
   background: #2f71e5;
   position: absolute;
@@ -59,7 +61,6 @@
   bottom: 0px;
   box-sizing: border-box;
   text-align: center;
-  font-family: "Roboto Slab", sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
@@ -79,8 +80,8 @@
   background-color: white;
   padding: 0;
   width: 608px;
-  height: 68px;
-  font-size: 25px;
+  height: 64px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 22px;
@@ -91,6 +92,7 @@
   justify-content: flex-start;
   align-items: center;
   padding-left: 24px;
+  font-family: "Roboto", serif;
 }
 
 .main__search-input {
@@ -103,14 +105,63 @@
   border: none;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 768px) {
+  .main {
+    padding-top: 38px;
+    padding-bottom: 48px;
+  }
+
+  .main__title {
+    max-width: 385px;
+    height: 80px;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 40px;
+  }
+
+  .main__paragraph {
+    max-width: 452px;
+    height: 48px;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+  }
+
+  .main__search-input-container {
+    max-width: 448px;
+    height: 56px;
+  }
+
+  .main__search-button {
+    width: 160px;
+    height: 56px;
+  }
+
+  .main__search-button-input {
+    padding-top: 24px;
+  }
+}
+
+@media screen and (max-width: 470px) {
   .main {
     padding-top: 30px;
-    padding-left: 19px;
+    padding-left: 16px;
     padding-right: 16px;
+    padding-bottom: 32px;
   }
   .main__title-paragraph {
-    gap: 0px;
+    gap: 16px;
+  }
+
+  .main__paragraph {
+    height: 72px;
+    padding-bottom: 122px;
+  }
+
+  .main__search-button-input {
+    padding: 0px;
   }
 
   .main__title {
@@ -121,17 +172,14 @@
     line-height: 40px;
   }
 
-  .main__search-button {
-    position: relative;
-  }
   .main__search-input-container {
     width: 288px;
-    height: 52px;
+    height: 56px;
   }
   .main__search-button {
-    /* padding-top: 16px; */
+    position: relative;
     width: 288px;
-    height: 52px;
+    height: 56px;
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
@@ -141,9 +189,5 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: 24px;
-    padding-right: 24px;
   }
 }

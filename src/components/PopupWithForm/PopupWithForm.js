@@ -8,7 +8,6 @@ const ModalWithForm = ({
   buttonText,
   title,
   onCloseModal,
-  name,
   onSubmit,
 }) => {
   return (
@@ -30,7 +29,7 @@ const ModalWithForm = ({
                 {buttonText}
               </button>
               <div className="modal__button-other-option-content">
-                or
+                <p className="modal__button-other-option-content-or">or</p>
                 <button
                   onClick={onSignUpModal}
                   className="modal__button-other-option"
@@ -45,7 +44,7 @@ const ModalWithForm = ({
                 {buttonText}
               </button>
               <div className="modal__button-other-option-content modal__button-other-option-signup-only">
-                or
+                <p className="modal__button-other-option-content-or">or</p>
                 <button
                   onClick={onSignInModal}
                   className="modal__button-other-option "

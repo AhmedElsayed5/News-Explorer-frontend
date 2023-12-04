@@ -36,7 +36,7 @@ const SignInPopup = ({ onCloseModal, onSignUpModal, isOpen, onSignIn }) => {
             name="email"
             minLength="1"
             maxLength="60"
-            placeholder="Email"
+            placeholder="Enter email"
             value={email}
             required={true}
             onChange={handleEmailChange}
@@ -50,7 +50,7 @@ const SignInPopup = ({ onCloseModal, onSignUpModal, isOpen, onSignIn }) => {
             name="password"
             minLength="1"
             maxLength="30"
-            placeholder="Password"
+            placeholder="Enter password"
             value={password}
             required={true}
             onChange={handlePassWordChange}

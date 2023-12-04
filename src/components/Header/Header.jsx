@@ -17,13 +17,13 @@ const Header = ({ onSignInModal, onMenuModal, currentPage, onSignOut }) => {
       {currentPage === "Home" ? (
         <div>
           <Link className={`header__logo header__home`} to="/">
-            <p>NewsExplorer</p>
+            <p className="header__logo-paragraph">NewsExplorer</p>
           </Link>
         </div>
       ) : (
         <div>
           <Link className={`header__logo`} to="/">
-            <p>NewsExplorer</p>
+            <p className="header__logo-paragraph">NewsExplorer</p>
           </Link>
         </div>
       )}
@@ -51,7 +51,7 @@ const Header = ({ onSignInModal, onMenuModal, currentPage, onSignOut }) => {
               className={`header__button header__button-home header__home`}
             >
               <Link to="/" className="header__home-link">
-                Home
+                <p className="header__button-title">Home</p>
               </Link>
             </button>
             <div className="header__button-home-highliter"></div>
@@ -60,10 +60,9 @@ const Header = ({ onSignInModal, onMenuModal, currentPage, onSignOut }) => {
           <div className="header__button-container">
             <button className={`header__button header__button-home`}>
               <Link to="/" className="header__link-saved-news">
-                Home
+                <p className="header__button-title">Home</p>
               </Link>
             </button>
-            <div className="header__button-home-highliter"></div>
           </div>
         )}
 
@@ -73,7 +72,7 @@ const Header = ({ onSignInModal, onMenuModal, currentPage, onSignOut }) => {
               className={`header__button header__button-home header__home-saved-news`}
             >
               <Link className="header__link" to="/savednews">
-                Saved articles
+                <p className="header__button-title">Saved articles</p>
               </Link>
             </button>
             <div className=""></div>
@@ -86,7 +85,7 @@ const Header = ({ onSignInModal, onMenuModal, currentPage, onSignOut }) => {
                   className="header__link header__link-saved-news"
                   to="/savednews"
                 >
-                  Saved articles
+                  <p className="header__button-title">Saved articles</p>
                 </Link>
               </button>
               <div className="header__button-home-highliter header__button-saved-news-highliter"></div>
@@ -99,7 +98,7 @@ const Header = ({ onSignInModal, onMenuModal, currentPage, onSignOut }) => {
             className="header__button header__signin header__home"
             onClick={onSignInModal}
           >
-            Sign-in
+            <p className="header__button-title">Sign-in</p>
           </button>
         ) : (
           !currentUser.email && (
@@ -107,7 +106,7 @@ const Header = ({ onSignInModal, onMenuModal, currentPage, onSignOut }) => {
               className="header__button header__signin"
               onClick={onSignInModal}
             >
-              Sign-in
+              <p className="header__button-title">Sign-in</p>
             </button>
           )
         )}
@@ -118,7 +117,9 @@ const Header = ({ onSignInModal, onMenuModal, currentPage, onSignOut }) => {
             className="header__button header__signin header__home"
           >
             <div className="header__button-logout">
-              {currentUser.email.slice(0, 3).toUpperCase()}
+              <p className="header__button-title">
+                {currentUser.email.slice(0, 3).toUpperCase()}
+              </p>
               <img src={logout} alt="logout" />
             </div>
           </button>
@@ -129,7 +130,9 @@ const Header = ({ onSignInModal, onMenuModal, currentPage, onSignOut }) => {
               className="header__button header__signin"
             >
               <div className="header__button-logout">
-                {currentUser.email.slice(0, 3).toUpperCase()}
+                <p className="header__button-title">
+                  {currentUser.email.slice(0, 3).toUpperCase()}
+                </p>
                 <img src={logoutDark} alt="logout" />
               </div>
             </button>

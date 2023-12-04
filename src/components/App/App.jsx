@@ -1,3 +1,4 @@
+import "./App.css";
 import Main from "../Main/Main.js";
 import About from "../About/About.js";
 import Footer from "../Footer/Footer.jsx";
@@ -139,7 +140,7 @@ function App() {
   }, [activeModal]);
 
   return (
-    <>
+    <main className="app">
       <CurrentUserContext.Provider value={{ currentUser }}>
         <SavedCardsContext.Provider value={{ savedCardsState }}>
           <Switch>
@@ -213,7 +214,7 @@ function App() {
           )}
         </SavedCardsContext.Provider>
       </CurrentUserContext.Provider>
-    </>
+    </main>
   );
 }
 

@@ -15,7 +15,7 @@
 }
 
 .cardList__title {
-  font-family: "Roboto Slab", sans-serif;
+  font-family: "Roboto Slab", serif;
   font-size: 40px;
   font-style: normal;
   font-weight: 400;
@@ -32,6 +32,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+  align-items: center;
+  justify-content: center;
 }
 
 .cardList__container-button {
@@ -41,10 +43,10 @@
 }
 
 .cardList__more-button {
-  font-family: "Roboto Slab", sans-serif;
+  font-family: "Roboto", serif;
   width: 288px;
   height: 64px;
-  background-color: #e8e8e8;
+  background-color: #fff;
   border-radius: 50px;
   border: none;
   font-size: 18px;
@@ -60,14 +62,26 @@
 @media screen and (max-width: 768px) {
   .cardList__container {
     gap: 8px;
+    padding-bottom: 32px;
+  }
+  .cardList {
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
   .cardList__more-button {
     width: 240px;
     height: 56px;
   }
+  .cardList__title {
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 34px;
+    padding-bottom: 32px;
+  }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 470px) {
   .cardList {
     padding-top: 32px;
     padding-bottom: 24px;
@@ -80,7 +94,12 @@
     padding-bottom: 58px;
   }
   .cardList__container {
+    gap: 10px;
     display: flex;
     justify-content: center;
+    padding-bottom: 21px;
+  }
+  .cardList__more-button {
+    width: 288px;
   }
 }
