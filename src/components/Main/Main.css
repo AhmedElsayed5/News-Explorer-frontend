@@ -71,6 +71,11 @@
 
 .main__search-button:hover {
   cursor: pointer;
+  background: #347eff;
+}
+
+.main__search-button:active {
+  background: #2a65cc;
 }
 
 .main__search-input-container {
@@ -105,7 +110,7 @@
   border: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
   .main {
     padding-top: 38px;
     padding-bottom: 48px;

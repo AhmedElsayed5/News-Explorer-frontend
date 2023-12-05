@@ -15,6 +15,7 @@
 }
 
 .cardList__title {
+  margin: 0;
   font-family: "Roboto Slab", serif;
   font-size: 40px;
   font-style: normal;
@@ -57,9 +58,10 @@
 
 .cardList__more-button:hover {
   cursor: pointer;
+  background-color: #e8e8e8;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
   .cardList__container {
     gap: 8px;
     padding-bottom: 32px;

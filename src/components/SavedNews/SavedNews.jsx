@@ -8,7 +8,7 @@ const SavedNews = ({
   onMenuModal,
 }) => {
   return (
-    <div>
+    <section>
       <Header
         onSignInModal={onSignInModal}
         onSignUpModal={onSignUpModal}
@@ -17,7 +17,7 @@ const SavedNews = ({
         currentPage={"Saved News"}
       />
       <SavedNewsInfo />
-    </div>
+    </section>
   );
 };
 

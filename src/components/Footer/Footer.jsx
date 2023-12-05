@@ -4,7 +4,7 @@ import fbImage from "../../images/facebook.svg";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 const Footer = () => {
   return (
-    <div className="footer">
+    <footer className="footer">
       <p className="footer__trademark">© 2021 Supersite, Powered by News API</p>
       <div className="footer__icons-links">
         <div className="footer__links">
@@ -38,7 +38,7 @@ const Footer = () => {
           </a>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 

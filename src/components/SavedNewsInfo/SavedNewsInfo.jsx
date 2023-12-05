@@ -33,7 +33,7 @@ const SavedNewsInfo = () => {
     return kewordString;
   };
   return (
-    <div className="saved-news__info">
+    <section className="saved-news__info">
       <p className="saved-news__header">Saved articles</p>
       <div className="saved-news__description-container">
         <h1 className="saved-news__description">
@@ -47,7 +47,7 @@ const SavedNewsInfo = () => {
           {checkKeywords()}
         </i>
       </div>
-    </div>
+    </section>
   );
 };
 

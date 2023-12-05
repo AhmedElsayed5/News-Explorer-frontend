@@ -119,12 +119,17 @@
 .modal__close-button {
   position: absolute;
   background: none;
-  right: -10px;
-  top: -40px;
-  width: 14px;
-  height: 14px;
+  right: -9px;
+  top: -20px;
+  width: 20px;
+  height: 20px;
   border: none;
   cursor: pointer;
+}
+
+.modal__close-button-logo {
+  width: 18px;
+  height: 18px;
 }
 
 .modal__close-button:hover {
@@ -141,4 +146,22 @@
 
 .modal__button-other-option-signup-only {
   padding-bottom: 23px;
+}
+@media screen and (max-width: 470px) {
+  .modal {
+    position: fixed;
+    bottom: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(15px);
+  }
+  .modal__content {
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    height: 100lvh;
+    top: 55px;
+    width: 100%;
+  }
+  .modal__close-button {
+    right: 35px;
+  }
 }

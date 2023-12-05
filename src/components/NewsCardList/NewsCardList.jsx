@@ -19,10 +19,10 @@ const NewsCardList = ({ children, cards, error, checkSaveStatus }) => {
   }, [cards, location]);
 
   return (
-    <div className="cardList">
+    <section className="cardList">
       <div className="cardList__content">
         {location.pathname === "/" ? (
-          <header className="cardList__title">Search results</header>
+          <h1 className="cardList__title">Search results</h1>
         ) : (
           <></>
         )}
@@ -79,7 +79,7 @@ const NewsCardList = ({ children, cards, error, checkSaveStatus }) => {
           )
         )}
       </div>
-    </div>
+    </section>
   );
 };
 

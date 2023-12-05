@@ -2,7 +2,7 @@ import aboutPic from "../../images/aboutPic.svg";
 import "./About.css";
 const About = () => {
   return (
-    <div className="about">
+    <section className="about">
       <img className="about__image" src={aboutPic} alt="about"></img>
       <div className="about__title-paragraph">
         <h2 className="about__title">About the author</h2>
@@ -17,7 +17,7 @@ const About = () => {
           </p>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -45,7 +45,7 @@
   font-weight: 700;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
   .saved-news__info {
     padding-left: 40px;
     padding-right: 40px;

@@ -5,18 +5,13 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import closeButton from "../../images/CloseButton.svg";
 import logout from "../../images/logout.svg";
 
-const PopupWithMenu = ({
-  onCloseModal,
-  onSignInModal,
-  onSignOut,
-  currentPage,
-}) => {
+const PopupWithMenu = ({ onCloseModal, onSignInModal, onSignOut }) => {
   const { currentUser } = useContext(CurrentUserContext);
   return (
-    <div className={`Menu__Modal`}>
-      <div className="Menu__Modal-header-content">
-        <div className="Menu__Modal-header">
-          <h1 className="Menu__Modal-header-title">News Explorer</h1>
+    <div className={`menu__modal`}>
+      <div className="menu__modal-header-content">
+        <div className="menu__modal-header">
+          <h1 className="menu__modal-header-title">News Explorer</h1>
           <button
             type="button"
             onClick={onCloseModal}
@@ -29,8 +24,8 @@ const PopupWithMenu = ({
             ></img>
           </button>
         </div>
-        <div className="Menu__Modal-content">
-          <button className="Menu__Modal-button Menu__Modal-button-home">
+        <div className="menu__modal-content">
+          <button className="menu__modal-button menu__modal-button-home">
             <Link to="/" className="header__home-link">
               Home
             </Link>
@@ -39,7 +34,7 @@ const PopupWithMenu = ({
           {!currentUser.email && (
             <button
               onClick={onSignInModal}
-              className="Menu__Modal-button Menu__Modal-button-signin"
+              className="menu__modal-button menu__modal-button-signin"
             >
               Sign in
             </button>
@@ -56,7 +51,7 @@ const PopupWithMenu = ({
           {currentUser.email && (
             <button
               onClick={onSignOut}
-              className="Menu__Modal-button Menu__Modal-button-signin"
+              className="menu__modal-button menu__modal-button-signin"
             >
               <div className="header__button-logout">
                 {currentUser.email.slice(0, 3).toUpperCase()}
@@ -66,7 +61,7 @@ const PopupWithMenu = ({
           )}
         </div>
       </div>
-      <div className="Menu__Modal-remaining"></div>
+      <div className="menu__modal-remaining"></div>
     </div>
   );
 };

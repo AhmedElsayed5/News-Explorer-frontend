@@ -1,22 +1,20 @@
-.Menu__Modal {
+.menu__modal {
   display: none;
 }
 
 @media screen and (max-width: 470px) {
-  .Menu__Modal {
+  .menu__modal {
     position: fixed;
     z-index: 1;
     height: 500px;
     width: 100%;
-    /* width: 320px; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
-  .Menu__Modal-header-content {
+  .menu__modal-header-content {
     z-index: 1;
-    /* width: 320px; */
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -28,7 +26,7 @@
     right: 0;
     bottom: 0;
   }
-  .Menu__Modal-header-title {
+  .menu__modal-header-title {
     color: white;
     font-family: "Roboto Slab", serif;
     font-size: 16px;
@@ -37,7 +35,7 @@
     line-height: 24px;
     margin: 0;
   }
-  .Menu__Modal-header {
+  .menu__modal-header {
     box-sizing: border-box;
     /* width: 320px; */
     width: 100%;
@@ -65,7 +63,7 @@
     width: 24px;
     height: 24px;
   }
-  .Menu__Modal-content {
+  .menu__modal-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -76,7 +74,7 @@
     height: 30lvh;
   }
 
-  .Menu__Modal-button {
+  .menu__modal-button {
     width: 288px;
     height: 56px;
     color: white;
@@ -104,20 +102,18 @@
     line-height: 56px;
     color: white;
   }
-  .Menu__Modal-button-home {
+  .menu__modal-button-home {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
   }
-  .Menu__Modal-button-signin {
+  .menu__modal-button-signin {
     border: 1px solid white;
     border-radius: 100px;
   }
-  .Menu__Modal-remaining {
-    /* z-index: 1; */
+  .menu__modal-remaining {
     opacity: 0.5;
-    /* width: 320px; */
     width: 100%;
     height: 100%;
     background-color: black;
@@ -125,26 +121,7 @@
     position: fixed;
     top: 1px;
   }
-  .Menu__Modal-button-signin:hover {
+  .menu__modal-button-signin:hover {
     cursor: pointer;
-  }
-}
-
-@media screen and (max-width: 470px) {
-  .modal {
-    position: fixed;
-    bottom: auto;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(15px);
-  }
-  .modal__content {
-    border-bottom-right-radius: 0px;
-    border-bottom-left-radius: 0px;
-    height: 100lvh;
-    top: 55px;
-    width: 100%;
-  }
-  .modal__close-button {
-    right: 35px;
   }
 }

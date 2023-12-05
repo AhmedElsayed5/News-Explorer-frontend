@@ -21,7 +21,7 @@ const Main = ({
     onSearch(search);
   };
   return (
-    <div className="header-main">
+    <section className="header-main">
       <Header
         onSignInModal={onSignInModal}
         onSignUpModal={onSignUpModal}
@@ -34,10 +34,10 @@ const Main = ({
         <div className="main__title-paragraph">
           <h1 className="main__title">What's going on in the world?</h1>
 
-          <div className="main__paragraph">
+          <p className="main__paragraph">
             Find the latest news on any topic and save them in your personal
             account.
-          </div>
+          </p>
         </div>
         <div className="main__search-button-input">
           <form
@@ -59,7 +59,7 @@ const Main = ({
           </form>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

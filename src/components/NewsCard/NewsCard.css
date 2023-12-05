@@ -162,7 +162,7 @@
   line-height: normal;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
   .card {
     width: 224px;
     height: 420px;

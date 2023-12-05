@@ -48,7 +48,7 @@
   color: black;
   font-family: "Roboto", serif;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
   .footer {
     padding-left: 40px;
     padding-right: 40px;

@@ -4,6 +4,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { SavedCardsContext } from "../../contexts/SavedCardsContext";
 import bookMark from "../../images/bookmark.svg";
 import bookMarkSaved from "../../images/bookmark-saved.svg";
+import bookMarkHover from "../../images/bookMarkHover.svg";
 import trash from "../../images/trash.svg";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
@@ -80,14 +81,19 @@ const NewsCard = (props) => {
                 }}
               />
             ) : (
-              <img
-                className="card__save-button-image"
-                src={bookMark}
-                alt="save-button"
-                onClick={() => {
-                  currentUser.email && checkSaveStatus({ ...props });
-                }}
-              />
+              <div
+                onMouseEnter={() => setHover(true)}
+                onMouseLeave={() => setHover(false)}
+              >
+                <img
+                  className="card__save-button-image"
+                  src={isHovered ? bookMarkHover : bookMark}
+                  alt="save-button"
+                  onClick={() => {
+                    currentUser.email && checkSaveStatus({ ...props });
+                  }}
+                />
+              </div>
             )}
           </button>
         </div>
