@@ -33,17 +33,17 @@ const SavedNewsInfo = () => {
     return kewordString;
   };
   return (
-    <section className="saved-news__info">
-      <p className="saved-news__header">Saved articles</p>
-      <div className="saved-news__description-container">
-        <h1 className="saved-news__description">
+    <section className="saved-news-page">
+      <p className="saved-news-page__header">Saved articles</p>
+      <div className="saved-news-page__description-container">
+        <h1 className="saved-news-page__description">
           {currentUser?.email?.slice(0, 3).toUpperCase()},you have
           {savedCardsState ? savedCardsState?.length : 0} saved articles
         </h1>
       </div>
-      <div className="saved-news__conclusion">
+      <div className="saved-news-page__conclusion">
         By keywords:{" "}
-        <i className="saved-news__conclusion saved-news__conculusion-bold">
+        <i className="saved-news-page__conclusion saved-news-page__conculusion-bold">
           {checkKeywords()}
         </i>
       </div>

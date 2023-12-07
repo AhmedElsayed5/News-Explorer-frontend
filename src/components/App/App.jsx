@@ -145,7 +145,6 @@ function App() {
         <SavedCardsContext.Provider value={{ savedCardsState }}>
           <Switch>
             <Route exact path="/">
-              {/* <PopupWithMenu onCloseModal={onCloseModal} /> */}
               <Main
                 onSignInModal={onSignInModal}
                 onSignUpModal={onSignUpModal}

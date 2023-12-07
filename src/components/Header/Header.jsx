@@ -9,11 +9,14 @@ const Header = ({ onSignInModal, onMenuModal, currentPage, onSignOut }) => {
   const { currentUser } = useContext(CurrentUserContext);
   return (
     <header
-      className={
-        currentPage === "Home" ? "header" : "header header__saved-news"
-      }
+      className={"header"}
       style={{ backgroundImage: "../../topBackground.svg" }}
     >
+      {currentPage !== "Home" ? (
+        <div className="header__save-news-border"></div>
+      ) : (
+        <></>
+      )}
       {currentPage === "Home" ? (
         <div>
           <Link className={`header__logo header__home`} to="/">
@@ -75,7 +78,7 @@ const Header = ({ onSignInModal, onMenuModal, currentPage, onSignOut }) => {
                 <p className="header__button-title">Saved articles</p>
               </Link>
             </button>
-            <div className=""></div>
+            {/* <div className=""></div> */}
           </div>
         ) : (
           currentUser.email && (

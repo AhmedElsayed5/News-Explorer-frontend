@@ -1,4 +1,4 @@
-.cardList {
+.card-list {
   padding-top: 80px;
   padding-bottom: 80px;
   padding-right: 20px;
@@ -10,11 +10,11 @@
   align-items: center;
 }
 
-.cardList__content {
+.card-list__content {
   max-width: 1280px;
 }
 
-.cardList__title {
+.card-list__title {
   margin: 0;
   font-family: "Roboto Slab", serif;
   font-size: 40px;
@@ -24,11 +24,11 @@
   padding-bottom: 64px;
 }
 
-.cardList__error {
+.card-list__error {
   color: #b6bcbf;
 }
 
-.cardList__container {
+.card-list__container {
   padding-bottom: 64px;
   display: flex;
   flex-wrap: wrap;
@@ -37,13 +37,13 @@
   justify-content: center;
 }
 
-.cardList__container-button {
+.card-list__container-button {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.cardList__more-button {
+.card-list__more-button {
   font-family: "Roboto", serif;
   width: 288px;
   height: 64px;
@@ -56,25 +56,25 @@
   line-height: 24px;
 }
 
-.cardList__more-button:hover {
+.card-list__more-button:hover {
   cursor: pointer;
   background-color: #e8e8e8;
 }
 
 @media screen and (max-width: 900px) {
-  .cardList__container {
+  .card-list__container {
     gap: 8px;
     padding-bottom: 32px;
   }
-  .cardList {
+  .card-list {
     padding-top: 40px;
     padding-bottom: 40px;
   }
-  .cardList__more-button {
+  .card-list__more-button {
     width: 240px;
     height: 56px;
   }
-  .cardList__title {
+  .card-list__title {
     font-size: 30px;
     font-style: normal;
     font-weight: 400;
@@ -84,24 +84,24 @@
 }
 
 @media screen and (max-width: 470px) {
-  .cardList {
+  .card-list {
     padding-top: 32px;
     padding-bottom: 24px;
     padding-right: 16px;
     padding-left: 16px;
   }
-  .cardList__title {
+  .card-list__title {
     font-size: 30px;
     line-height: 34px;
     padding-bottom: 58px;
   }
-  .cardList__container {
+  .card-list__container {
     gap: 10px;
     display: flex;
     justify-content: center;
     padding-bottom: 21px;
   }
-  .cardList__more-button {
+  .card-list__more-button {
     width: 288px;
   }
 }

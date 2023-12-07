@@ -13,17 +13,12 @@ const ModalWithForm = ({
   return (
     <div className={`modal`}>
       <div className="modal__content">
-        <button
-          type="button"
+        <img
           onClick={onCloseModal}
-          className="modal__close-button"
-        >
-          <img
-            className="modal__close-button-logo"
-            src={closeButton}
-            alt={"Close Icon"}
-          ></img>
-        </button>
+          className="modal__close-button-logo"
+          src={closeButton}
+          alt={"Close Icon"}
+        />
         <h3 className="modal__title">{title}</h3>
         <form onSubmit={onSubmit} className="modal__labels">
           {children}

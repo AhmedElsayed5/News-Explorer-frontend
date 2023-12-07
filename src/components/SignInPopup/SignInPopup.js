@@ -27,7 +27,7 @@ const SignInPopup = ({ onCloseModal, onSignUpModal, isOpen, onSignIn }) => {
       onSubmit={handleSubmit}
       onSignUpModal={onSignUpModal}
     >
-      <fieldset className="form__field">
+      <fieldset className="modal__form-field">
         <label className="modal__label">
           Email
           <input

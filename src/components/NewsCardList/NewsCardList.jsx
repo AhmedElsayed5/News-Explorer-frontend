@@ -19,21 +19,21 @@ const NewsCardList = ({ children, cards, error, checkSaveStatus }) => {
   }, [cards, location]);
 
   return (
-    <section className="cardList">
-      <div className="cardList__content">
+    <section className="card-list">
+      <div className="card-list__content">
         {location.pathname === "/" ? (
-          <h1 className="cardList__title">Search results</h1>
+          <h1 className="card-list__title">Search results</h1>
         ) : (
           <></>
         )}
 
         {children}
-        {/* <div className="cardList__container-button"> */}
+        {/* <div className="card-list__container-button"> */}
         {cards.length ? (
-          <div className="cardList__container-button">
+          <div className="card-list__container-button">
             {location.pathname === "/" ? (
               <>
-                <div className="cardList__container">
+                <div className="card-list__container">
                   {cardsToRender?.slice(0, numberOfCards).map((card, key) => (
                     <NewsCard
                       {...card}
@@ -44,13 +44,13 @@ const NewsCardList = ({ children, cards, error, checkSaveStatus }) => {
                 </div>
                 <button
                   onClick={() => setNumberOfCards(numberOfCards + 3)}
-                  className="cardList__more-button"
+                  className="card-list__more-button"
                 >
                   Show more
                 </button>
               </>
             ) : (
-              <div className="cardList__container">
+              <div className="card-list__container">
                 {cardsToRender?.map((card, key) => (
                   <NewsCard
                     {...card}
@@ -63,15 +63,15 @@ const NewsCardList = ({ children, cards, error, checkSaveStatus }) => {
           </div>
         ) : (
           location.pathname === "/" && (
-            <div className="cardList__container-button">
+            <div className="card-list__container-button">
               {error ? (
-                <h2 className="cardList__error cardList__title">
+                <h2 className="card-list__error card-list__title">
                   "Sorry, something went wrong during the request. There may be
                   a connection issue or the server may be down. Please try again
                   later."
                 </h2>
               ) : (
-                <h2 className="cardList__error cardList__title">
+                <h2 className="card-list__error card-list__title">
                   Sorry!! Nothing to show please try again with different words
                 </h2>
               )}

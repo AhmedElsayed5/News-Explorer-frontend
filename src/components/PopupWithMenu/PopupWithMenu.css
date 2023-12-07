@@ -4,7 +4,7 @@
 
 @media screen and (max-width: 470px) {
   .menu__modal {
-    position: fixed;
+    /* position: fixed; */
     z-index: 1;
     height: 500px;
     width: 100%;
@@ -25,6 +25,7 @@
     left: 0;
     right: 0;
     bottom: 0;
+    padding-bottom: 20px;
   }
   .menu__modal-header-title {
     color: white;
@@ -62,6 +63,11 @@
   .modal__close-button-menu-modal-image {
     width: 24px;
     height: 24px;
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 19px;
+    right: 16px;
   }
   .menu__modal-content {
     display: flex;

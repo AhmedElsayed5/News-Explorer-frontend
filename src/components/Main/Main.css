@@ -13,6 +13,8 @@
 
 .header-main {
   background-image: url("../../images/topBackground.svg");
+  background-position: center center;
+  background-size: 1440px;
 }
 
 .main__title-paragraph {
@@ -134,6 +136,10 @@
     line-height: 24px;
   }
 
+  .main__title-paragraph {
+    gap: 16px;
+  }
+
   .main__search-input-container {
     max-width: 448px;
     height: 56px;
@@ -149,17 +155,20 @@
   }
 }
 
-@media screen and (max-width: 470px) {
+@media screen and (max-width: 500px) {
   .main {
     padding-top: 30px;
     padding-left: 16px;
     padding-right: 16px;
     padding-bottom: 32px;
   }
-  .main__title-paragraph {
-    gap: 16px;
-  }
 
+  .main__search-input-container {
+    max-width: 430px;
+  }
+}
+
+@media screen and (max-width: 470px) {
   .main__paragraph {
     height: 72px;
     padding-bottom: 122px;

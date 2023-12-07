@@ -21,7 +21,7 @@ const Main = ({
     onSearch(search);
   };
   return (
-    <section className="header-main">
+    <div className="header-main">
       <Header
         onSignInModal={onSignInModal}
         onSignUpModal={onSignUpModal}
@@ -30,7 +30,7 @@ const Main = ({
         onSignOut={onSignOut}
         currentPage={"Home"}
       />
-      <div className="main">
+      <section className="main">
         <div className="main__title-paragraph">
           <h1 className="main__title">What's going on in the world?</h1>
 
@@ -58,8 +58,8 @@ const Main = ({
             </button>
           </form>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 };
 

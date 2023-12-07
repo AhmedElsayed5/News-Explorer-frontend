@@ -11,7 +11,7 @@
   box-sizing: border-box;
 }
 
-.about__paragraph__container {
+.about__paragraph_container {
   display: flex;
   flex-direction: column;
   gap: 24px;
