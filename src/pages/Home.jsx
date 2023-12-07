@@ -28,27 +28,34 @@ const Home = ({
           onSignOut={onSignOut}
           currentPage={"Home"}
         />
-        <Main
-          onSignInModal={onSignInModal}
-          onSignUpModal={onSignUpModal}
-          onCloseModal={onCloseModal}
-          onSearch={onSearch}
-          onSignOut={onSignOut}
-          onMenuModal={onMenuModal}
-        />
+        <section>
+          <Main
+            onSignInModal={onSignInModal}
+            onSignUpModal={onSignUpModal}
+            onCloseModal={onCloseModal}
+            onSearch={onSearch}
+            onSignOut={onSignOut}
+            onMenuModal={onMenuModal}
+          />
+        </section>
       </div>
-      {showNewsCard ? (
-        <NewsCardList
-          cards={cards}
-          error={error}
-          checkSaveStatus={checkSaveStatus}
-        >
-          {loading && <PreLoader></PreLoader>}
-        </NewsCardList>
-      ) : (
-        <></>
-      )}
-      <About />
+      <section>
+        {showNewsCard ? (
+          <NewsCardList
+            cards={cards}
+            error={error}
+            checkSaveStatus={checkSaveStatus}
+          >
+            {loading && <PreLoader></PreLoader>}
+          </NewsCardList>
+        ) : (
+          <></>
+        )}
+      </section>
+      <section>
+        <About />
+      </section>
+
       <Footer />
     </div>
   );

@@ -23,23 +23,27 @@ const SavedNewsPage = ({
         onMenuModal={onMenuModal}
         currentPage={"Saved News"}
       />
-      <SavedNews
-        onSignInModal={onSignInModal}
-        onSignUpModal={onSignUpModal}
-        onCloseModal={onCloseModal}
-        onMenuModal={onMenuModal}
-      />
-      {showNewsCard ? (
-        <NewsCardList
-          cards={cards}
-          error={error}
-          checkSaveStatus={checkSaveStatus}
-        >
-          {loading && <PreLoader></PreLoader>}
-        </NewsCardList>
-      ) : (
-        <></>
-      )}
+      <section>
+        <SavedNews
+          onSignInModal={onSignInModal}
+          onSignUpModal={onSignUpModal}
+          onCloseModal={onCloseModal}
+          onMenuModal={onMenuModal}
+        />
+      </section>
+      <section>
+        {showNewsCard ? (
+          <NewsCardList
+            cards={cards}
+            error={error}
+            checkSaveStatus={checkSaveStatus}
+          >
+            {loading && <PreLoader></PreLoader>}
+          </NewsCardList>
+        ) : (
+          <></>
+        )}
+      </section>
       <Footer />
     </div>
   );

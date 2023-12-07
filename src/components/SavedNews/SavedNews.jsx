@@ -1,11 +1,6 @@
 import SavedNewsInfo from "../SavedNewsInfo/SavedNewsInfo";
 
-const SavedNews = ({
-  onSignInModal,
-  onSignUpModal,
-  onCloseModal,
-  onMenuModal,
-}) => {
+const SavedNews = () => {
   return (
     <section>
       <SavedNewsInfo />

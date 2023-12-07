@@ -11,7 +11,11 @@ const PopupWithMenu = ({ onCloseModal, onSignInModal, onSignOut }) => {
     <div className={`menu`}>
       <div className="menu__header-content">
         <div className="menu__header">
-          <h1 className="menu__header-title">News Explorer</h1>
+          <h1 className="menu__header-title">
+            <Link to="/" className="menu__home-link">
+              News Explorer
+            </Link>
+          </h1>
           <img
             src={closeButton}
             className="menu__close-button-menu-modal-image"
