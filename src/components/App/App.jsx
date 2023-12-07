@@ -1,8 +1,4 @@
 import "./App.css";
-import Main from "../Main/Main.js";
-import About from "../About/About.js";
-import Footer from "../Footer/Footer.jsx";
-import SavedNews from "../SavedNews/SavedNews.jsx";
 import SignInPopup from "../SignInPopup/SignInPopup.js";
 import SignUpPopup from "../SignUpPopup/SignUpPopup.js";
 import PopupWithMenu from "../PopupWithMenu/PopupWithMenu.jsx";
@@ -11,8 +7,8 @@ import { Route, Switch } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext.js";
 import { SavedCardsContext } from "../../contexts/SavedCardsContext.js";
-import PreLoader from "../PreLoader/PreLoader.js";
-import NewsCardList from "../NewsCardList/NewsCardList.jsx";
+import Home from "../../pages/Home";
+import SavedNewsPage from "../../pages/SavedNewsPage.jsx";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -144,52 +140,43 @@ function App() {
       <CurrentUserContext.Provider value={{ currentUser }}>
         <SavedCardsContext.Provider value={{ savedCardsState }}>
           <Switch>
-            <Route exact path="/">
-              <Main
-                onSignInModal={onSignInModal}
-                onSignUpModal={onSignUpModal}
-                onCloseModal={onCloseModal}
-                onSearch={onSearch}
-                onSignOut={onSignOut}
-                onMenuModal={onMenuModal}
-              />
-
-              {showNewsCard ? (
-                <NewsCardList
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <Home
+                  onSignInModal={onSignInModal}
+                  onSignUpModal={onSignUpModal}
+                  onCloseModal={onCloseModal}
+                  onSearch={onSearch}
+                  onSignOut={onSignOut}
+                  onMenuModal={onMenuModal}
                   cards={localStorageCards}
                   error={dataError}
                   checkSaveStatus={checkSaveStatus}
-                >
-                  {loading && <PreLoader></PreLoader>}
-                </NewsCardList>
-              ) : (
-                <></>
+                  showNewsCard={showNewsCard}
+                  loading={loading}
+                />
               )}
+            />
 
-              <About />
-            </Route>
-            <Route exact path="/savednews">
-              <SavedNews
-                onSignInModal={onSignInModal}
-                onSignUpModal={onSignUpModal}
-                onCloseModal={onCloseModal}
-                onMenuModal={onMenuModal}
-              />
-              {showNewsCard ? (
-                <NewsCardList
+            <Route
+              path="/savednews"
+              render={() => (
+                <SavedNewsPage
+                  onSignInModal={onSignInModal}
+                  onSignUpModal={onSignUpModal}
+                  onCloseModal={onCloseModal}
+                  onMenuModal={onMenuModal}
+                  showNewsCard={showNewsCard}
                   cards={savedCardsState}
                   error={dataError}
                   checkSaveStatus={checkSaveStatus}
-                >
-                  {loading && <PreLoader></PreLoader>}
-                </NewsCardList>
-              ) : (
-                <></>
+                  loading={loading}
+                />
               )}
-            </Route>
+            />
           </Switch>
-
-          <Footer />
           {activeModal === "signInModal" && (
             <SignInPopup
               onSignUpModal={onSignUpModal}

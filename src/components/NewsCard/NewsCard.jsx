@@ -50,6 +50,7 @@ const NewsCard = (props) => {
     var options = { year: "numeric", month: "long", day: "numeric" };
     return new Date(string).toLocaleDateString([], options);
   }
+  console.log(isHovered);
 
   return (
     <div className="card">
@@ -61,7 +62,7 @@ const NewsCard = (props) => {
         >
           <div
             className={
-              isHovered && !currentUser.email
+              !currentUser.email & isHovered
                 ? `card__save-button-message-container`
                 : `card__save-button-message-container-hidden`
             }
@@ -82,8 +83,8 @@ const NewsCard = (props) => {
               />
             ) : (
               <div
-                onMouseEnter={() => setHover(true)}
-                onMouseLeave={() => setHover(false)}
+                onMouseEnter={() => currentUser.email && setHover(true)}
+                onMouseLeave={() => currentUser.email && setHover(false)}
               >
                 <img
                   className="card__save-button-image"
@@ -109,7 +110,7 @@ const NewsCard = (props) => {
           >
             <div
               className={
-                isHovered
+                currentUser.email && isHovered
                   ? `card__save-button-message-container`
                   : `card__save-button-message-container-hidden`
               }

@@ -1,4 +1,3 @@
-import Header from "../Header/Header";
 import SavedNewsInfo from "../SavedNewsInfo/SavedNewsInfo";
 
 const SavedNews = ({
@@ -8,18 +7,9 @@ const SavedNews = ({
   onMenuModal,
 }) => {
   return (
-    <div>
-      <Header
-        onSignInModal={onSignInModal}
-        onSignUpModal={onSignUpModal}
-        onCloseModal={onCloseModal}
-        onMenuModal={onMenuModal}
-        currentPage={"Saved News"}
-      />
-      <section>
-        <SavedNewsInfo />
-      </section>
-    </div>
+    <section>
+      <SavedNewsInfo />
+    </section>
   );
 };
 
