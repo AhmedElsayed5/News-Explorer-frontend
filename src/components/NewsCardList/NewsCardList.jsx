@@ -42,12 +42,14 @@ const NewsCardList = ({ children, cards, error, checkSaveStatus }) => {
                     />
                   ))}
                 </div>
-                <button
-                  onClick={() => setNumberOfCards(numberOfCards + 3)}
-                  className="card-list__more-button"
-                >
-                  Show more
-                </button>
+                <div className="card-list__more-button-container">
+                  <button
+                    onClick={() => setNumberOfCards(numberOfCards + 3)}
+                    className="card-list__more-button"
+                  >
+                    Show more
+                  </button>
+                </div>
               </>
             ) : (
               <div className="card-list__container">

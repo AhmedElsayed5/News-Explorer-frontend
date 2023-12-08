@@ -22,14 +22,16 @@ const Footer = () => {
         </div>
         <div className="footer__icons">
           <a
+            className="footer__icons-link"
             href="https://github.com/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src={githubImage} alt="github link" />
+            <img src={githubImage} alt="github link"></img>
           </a>
 
           <a
+            className="footer__icons-link"
             href="https://www.facebook.com/"
             target="_blank"
             rel="noopener noreferrer"

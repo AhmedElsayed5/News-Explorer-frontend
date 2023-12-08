@@ -27,6 +27,11 @@
   gap: 40px;
 }
 
+.footer__icons-link {
+  text-decoration: none;
+  height: 24px;
+}
+
 .footer__icons {
   display: flex;
   gap: 24px;
