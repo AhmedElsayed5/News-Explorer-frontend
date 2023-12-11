@@ -1,0 +1,236 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  padding-left: 104px;
+  padding-right: 104px;
+  margin: 0;
+  border-bottom: 2px solid;
+  border-color: rgba(255, 255, 255, 0.2);
+  box-sizing: border-box;
+}
+
+.header__menu-mobile-view-button {
+  display: none;
+}
+
+.header__save-news-border {
+  height: 2px;
+  position: absolute;
+  width: 100%;
+  top: 78px;
+  right: 0px;
+  background: #d1d2d6;
+}
+
+.header__logo {
+  margin: 0px;
+  font-family: "Roboto Slab", serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+  color: black;
+  text-decoration: none;
+}
+
+.header__home {
+  color: white;
+}
+
+.header__home-link {
+  color: white;
+  text-decoration: none;
+}
+
+.header__button-title {
+  margin: 0;
+  font-family: "Roboto", serif;
+}
+
+.header__home-saved-news {
+  color: #b6bcbf;
+}
+
+.header__buttons {
+  display: flex;
+  gap: 42px;
+}
+
+.header__button {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  background-color: transparent;
+  opacity: 1;
+  margin: 0;
+  padding: 0;
+}
+
+.header__button:hover {
+  cursor: pointer;
+}
+
+.header__button-home {
+  border: none;
+}
+
+.header__button-container {
+  position: relative;
+  min-height: 48px;
+  display: flex;
+}
+
+.header__button-home-highliter {
+  width: 66px;
+  height: 3px;
+  background-color: white;
+  position: absolute;
+  bottom: -17px;
+  right: -10px;
+}
+
+.header__button-saved-news-highliter {
+  width: 140px;
+  background-color: black;
+  right: -15px;
+}
+
+.header__link {
+  text-decoration: none;
+  color: #b6bcbf;
+}
+
+.header__link-saved-news {
+  color: black;
+  text-decoration: none;
+}
+
+.header__signin {
+  border-radius: 100px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 48px;
+  border: 1px solid;
+  width: 176px;
+}
+
+.header__link {
+  text-decoration: none;
+}
+
+.header__button-logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: 900px) {
+  .header {
+    padding-left: 40px;
+    padding-right: 40px;
+    height: 66px;
+  }
+  .header__button-home-highliter {
+    bottom: -10px;
+    right: -12px;
+  }
+  .header__save-news-border {
+    top: 64px;
+  }
+  .header__signin {
+    width: 152px;
+    height: 40px;
+  }
+  .header__buttons {
+    align-items: center;
+    gap: 25px;
+  }
+  .header__button-saved-news-highliter {
+    width: 130px;
+    right: -14px;
+  }
+  .header__button-title {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 690px) {
+  .header {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .header__signin {
+    width: 90px;
+  }
+  .header__buttons {
+    gap: 15px;
+  }
+
+  .header__button-saved-news-highliter {
+    width: 110px;
+    right: -5.5px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .header__button-title {
+    font-size: 12px;
+  }
+  .header__button-home-highliter {
+    width: 45px;
+    right: -6px;
+  }
+  .header__button-saved-news-highliter {
+    width: 85px;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .header {
+    height: 56px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .header__save-news-border {
+    top: 54px;
+  }
+  .header__buttons {
+    display: none;
+  }
+  .header__menu-mobile-view {
+    display: inline;
+  }
+  .header__menu-mobile-view-button {
+    width: 24px;
+    height: 24px;
+    background-color: transparent;
+    padding: 0px;
+    border-width: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+  }
+  .header__menu-mobile-view-button-design {
+    width: 16px;
+    height: 2px;
+    background-color: white;
+  }
+  .header__menu-mobile-view-button-design-saved-news {
+    width: 16px;
+    height: 2px;
+    background-color: black;
+  }
+  .header__logo-paragraph {
+    margin: 0px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+  }
+}

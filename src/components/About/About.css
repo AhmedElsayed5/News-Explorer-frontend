@@ -1,0 +1,95 @@
+.about {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  padding-left: 104px;
+  padding-right: 104px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  position: relative;
+  gap: 56px;
+  box-sizing: border-box;
+}
+
+.about__paragraph_container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.about__title {
+  padding-top: 50px;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 46px;
+  margin: 0px;
+  padding-bottom: 24px;
+  font-family: "Roboto Slab", serif;
+}
+
+.about__paragraph {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 0px;
+  font-family: "Roboto", serif;
+}
+
+.about__title-paragraph {
+  max-width: 600px;
+  min-height: 120px;
+}
+
+@media screen and (max-width: 900px) {
+  .about {
+    position: relative;
+    padding-top: 61px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 61px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+  .about__image {
+    width: 232px;
+    height: 232px;
+  }
+  .about__title {
+    position: absolute;
+    top: 40px;
+    left: 304px;
+    font-size: 30px;
+    padding-top: 0px;
+    line-height: 40px;
+    padding-bottom: 16px;
+  }
+}
+
+@media screen and (max-width: 690px) {
+  .about {
+    padding-top: 100px;
+  }
+}
+
+@media screen and (max-width: 555px) {
+  .about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding-top: 32px;
+    padding-bottom: 128px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .about__title {
+    position: static;
+  }
+  .about__image {
+    width: 272px;
+    height: 272px;
+  }
+}
