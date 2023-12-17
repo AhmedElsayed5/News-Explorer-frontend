@@ -77,7 +77,7 @@ function App() {
     setSearchValue(value);
     localStorage.setItem("search", value);
   };
-
+  console.log(savedCardsState);
   useEffect(() => {
     loading ? (
       getItems(searchValue)

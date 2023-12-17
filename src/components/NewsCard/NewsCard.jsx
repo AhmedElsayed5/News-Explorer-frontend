@@ -50,7 +50,6 @@ const NewsCard = (props) => {
     var options = { year: "numeric", month: "long", day: "numeric" };
     return new Date(string).toLocaleDateString([], options);
   }
-  console.log(isHovered);
 
   return (
     <div className="card">

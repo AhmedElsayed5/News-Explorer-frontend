@@ -1,20 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
+import { useFormWithValidation } from "../UseFormWithValidation/UseFormWithValidation";
 
 const SignInPopup = ({ onCloseModal, onSignUpModal, isOpen, onSignIn }) => {
-  const [email, setEmail] = useState("");
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const [password, setPassWord] = useState("");
-  const handlePassWordChange = (e) => {
-    setPassWord(e.target.value);
-  };
+  const formValidator = useFormWithValidation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSignIn({ email, password });
+    console.log(formValidator.values);
   };
 
   return (
@@ -24,6 +17,7 @@ const SignInPopup = ({ onCloseModal, onSignUpModal, isOpen, onSignIn }) => {
       className="modal__title"
       onCloseModal={onCloseModal}
       isOpen={isOpen}
+      isValid={formValidator.isValid}
       onSubmit={handleSubmit}
       onSignUpModal={onSignUpModal}
     >
@@ -37,10 +31,13 @@ const SignInPopup = ({ onCloseModal, onSignUpModal, isOpen, onSignIn }) => {
             minLength="1"
             maxLength="60"
             placeholder="Enter email"
-            value={email}
+            value={formValidator.values["email"]}
             required={true}
-            onChange={handleEmailChange}
+            onChange={(e) => formValidator.handleChange(e)}
           ></input>
+          <span className="modal__span">
+            {!!formValidator.errors["email"] ? "Invalid email address" : ""}
+          </span>
         </label>
         <label className="modal__label">
           Password
@@ -51,10 +48,13 @@ const SignInPopup = ({ onCloseModal, onSignUpModal, isOpen, onSignIn }) => {
             minLength="1"
             maxLength="30"
             placeholder="Enter password"
-            value={password}
+            value={formValidator.values["password"]}
             required={true}
-            onChange={handlePassWordChange}
+            onChange={(e) => formValidator.handleChange(e)}
           ></input>
+          <span className="modal__span">
+            {!!formValidator.errors["password"] ? "Invalid password" : ""}
+          </span>
         </label>
       </fieldset>
     </PopupWithForm>
