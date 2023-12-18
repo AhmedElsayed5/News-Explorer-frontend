@@ -3,6 +3,7 @@ import "./PopupWithForm.css";
 import closeButton from "../../images/CloseButton.svg";
 const ModalWithForm = ({
   children,
+  error,
   onSignUpModal,
   onSignInModal,
   buttonText,
@@ -25,6 +26,9 @@ const ModalWithForm = ({
           {children}
           {title === "Sign In" ? (
             <div className="modal__buttons">
+              <span className="modal__buuton-error">
+                {error.length ? "sign in failed" : ""}
+              </span>
               {isValid ? (
                 <button
                   className={
@@ -55,6 +59,9 @@ const ModalWithForm = ({
             </div>
           ) : (
             <div className="modal__buttons">
+              <span className="modal__buuton-error">
+                {error.length ? "sign up failed" : ""}
+              </span>
               {isValid ? (
                 <button
                   className={

@@ -1,18 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 import { useFormWithValidation } from "../UseFormWithValidation/UseFormWithValidation";
+import { signUp } from "../../utils/MainApi";
 
-const SignUpPopup = ({ onCloseModal, onSignInModal, isOpen }) => {
+const SignUpPopup = ({
+  onCloseModal,
+  onSignInModal,
+  isOpen,
+  onRegisteredSuccess,
+}) => {
   const formValidator = useFormWithValidation();
-
+  const [error, setError] = useState({});
+  console.log(error);
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formValidator.values);
+    const { name, email, password } = formValidator.values;
+    signUp({ name, email, password })
+      .then((res) => {
+        console.log(res);
+        onRegisteredSuccess();
+      })
+      .catch((err) => {
+        console.log(err);
+        setError(err);
+      });
   };
 
   return (
     <PopupWithForm
       title="Sign Up"
+      error={error}
       buttonText="Next"
       className="modal__title"
       onCloseModal={onCloseModal}

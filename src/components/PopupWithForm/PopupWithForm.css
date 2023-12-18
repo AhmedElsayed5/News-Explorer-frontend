@@ -10,6 +10,16 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+.modal__buuton-error {
+  font-family: "Inter", serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  height: 14px;
+  color: red;
+  padding-bottom: 7px;
+}
 .modal__content {
   background-color: #ffffff;
   width: 430px;
@@ -48,13 +58,13 @@
 .modal__labels {
   display: flex;
   flex-direction: column;
-  gap: 9px;
+  /* gap: 9px; */
 }
 
 .modal__label {
   display: flex;
   flex-direction: column;
-  padding-bottom: 17px;
+  padding-bottom: 14px;
   color: #2f71e5;
   font-family: "Inter", sans-serif;
   font-size: 12px;
@@ -98,6 +108,7 @@
 }
 
 .modal__button-other-option-content {
+  padding-top: 16px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -153,7 +164,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 16px;
 }
 
 .modal__button-other-option-signup-only {

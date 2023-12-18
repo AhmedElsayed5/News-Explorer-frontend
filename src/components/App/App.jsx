@@ -2,6 +2,7 @@ import "./App.css";
 import SignInPopup from "../SignInPopup/SignInPopup.js";
 import SignUpPopup from "../SignUpPopup/SignUpPopup.js";
 import PopupWithMenu from "../PopupWithMenu/PopupWithMenu.jsx";
+import ModalConfirmation from "../ModalConfirmation/ModalConfirmation.jsx";
 import { getItems } from "../../utils/Api.js";
 import { Route, Switch } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -24,13 +25,9 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [savedCardsState, setSavedCardsState] = useState([]);
 
-  const onSignIn = ({ email, password }) => {
-    setCurrentUser({ email, password });
-    onCloseModal();
-  };
-
   const onSignOut = () => {
-    setCurrentUser({});
+    localStorage.removeItem("jwt");
+    setCurrentUser();
     onCloseModal();
   };
 
@@ -106,6 +103,12 @@ function App() {
     setActiveModal("signUpModal");
   };
 
+  // create modal created successfull
+
+  const onRegisteredSuccess = () => {
+    setActiveModal("confirmModal");
+  };
+
   const onMenuModal = () => {
     setActiveModal("menuModal");
   };
@@ -137,7 +140,7 @@ function App() {
 
   return (
     <main className="app">
-      <CurrentUserContext.Provider value={{ currentUser }}>
+      <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
         <SavedCardsContext.Provider value={{ savedCardsState }}>
           <Switch>
             <Route
@@ -181,13 +184,13 @@ function App() {
             <SignInPopup
               onSignUpModal={onSignUpModal}
               onCloseModal={onCloseModal}
-              onSignIn={onSignIn}
             ></SignInPopup>
           )}
           {activeModal === "signUpModal" && (
             <SignUpPopup
               onSignInModal={onSignInModal}
               onCloseModal={onCloseModal}
+              onRegisteredSuccess={onRegisteredSuccess}
             ></SignUpPopup>
           )}
           {activeModal === "menuModal" && (
@@ -197,6 +200,13 @@ function App() {
               onSignInModal={onSignInModal}
               onSignOut={onSignOut}
             ></PopupWithMenu>
+          )}
+
+          {activeModal === "confirmModal" && (
+            <ModalConfirmation
+              onCloseModal={onCloseModal}
+              onSignInModal={onSignInModal}
+            ></ModalConfirmation>
           )}
         </SavedCardsContext.Provider>
       </CurrentUserContext.Provider>

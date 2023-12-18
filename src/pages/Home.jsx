@@ -7,6 +7,7 @@ import Footer from "../components/Footer/Footer";
 const Home = ({
   onSignInModal,
   onSignUpModal,
+  onRegisteredSuccess,
   onCloseModal,
   onSearch,
   onSignOut,

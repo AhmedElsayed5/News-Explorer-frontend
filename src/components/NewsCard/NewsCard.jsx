@@ -61,7 +61,7 @@ const NewsCard = (props) => {
         >
           <div
             className={
-              !currentUser.email & isHovered
+              !currentUser?.email & isHovered
                 ? `card__save-button-message-container`
                 : `card__save-button-message-container-hidden`
             }
@@ -71,26 +71,26 @@ const NewsCard = (props) => {
             </p>
           </div>
           <button className="card__save-button">
-            {isSaved && currentUser.email && location.pathname === "/" ? (
+            {isSaved && currentUser?.email && location.pathname === "/" ? (
               <img
                 className="card__save-button-image"
                 src={bookMarkSaved}
                 alt="save-button"
                 onClick={() => {
-                  currentUser.email && checkSaveStatus({ ...props });
+                  currentUser?.email && checkSaveStatus({ ...props });
                 }}
               />
             ) : (
               <div
-                onMouseEnter={() => currentUser.email && setHover(true)}
-                onMouseLeave={() => currentUser.email && setHover(false)}
+                onMouseEnter={() => currentUser?.email && setHover(true)}
+                onMouseLeave={() => currentUser?.email && setHover(false)}
               >
                 <img
                   className="card__save-button-image"
                   src={isHovered ? bookMarkHover : bookMark}
                   alt="save-button"
                   onClick={() => {
-                    currentUser.email && checkSaveStatus({ ...props });
+                    currentUser?.email && checkSaveStatus({ ...props });
                   }}
                 />
               </div>
@@ -109,7 +109,7 @@ const NewsCard = (props) => {
           >
             <div
               className={
-                currentUser.email && isHovered
+                currentUser?.email && isHovered
                   ? `card__save-button-message-container`
                   : `card__save-button-message-container-hidden`
               }

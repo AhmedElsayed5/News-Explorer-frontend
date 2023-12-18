@@ -1,18 +1,36 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 import { useFormWithValidation } from "../UseFormWithValidation/UseFormWithValidation";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { signIn } from "../../utils/MainApi";
 
-const SignInPopup = ({ onCloseModal, onSignUpModal, isOpen, onSignIn }) => {
+const SignInPopup = ({ onCloseModal, onSignUpModal, isOpen }) => {
   const formValidator = useFormWithValidation();
+  const [error, setError] = useState({});
+
+  const { setCurrentUser } = useContext(CurrentUserContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formValidator.values);
+    signIn({
+      email: formValidator.values["email"],
+      password: formValidator.values["password"],
+    })
+      .then((res) => {
+        localStorage.setItem("jwt", res.token);
+        setCurrentUser(res.user);
+        onCloseModal();
+      })
+      .catch((err) => {
+        setError(err);
+        console.log(err);
+      });
   };
 
   return (
     <PopupWithForm
       title="Sign In"
+      error={error}
       buttonText="Sign In"
       className="modal__title"
       onCloseModal={onCloseModal}
