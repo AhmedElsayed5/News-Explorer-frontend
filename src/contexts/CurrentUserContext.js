@@ -2,7 +2,7 @@ import React from "react";
 
 const CurrentUserContext = React.createContext({
   currentUser: {},
-  setCurrentUserFun: () => {},
+  setCurrentUser: () => {},
 });
 
 export { CurrentUserContext };

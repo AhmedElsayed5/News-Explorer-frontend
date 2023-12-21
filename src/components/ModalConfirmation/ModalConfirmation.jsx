@@ -2,7 +2,6 @@ import "./ModalConfirmation.css";
 import closeButton from "../../images/CloseButton.svg";
 
 const ModalConfirmation = ({ onCloseModal, onSignInModal }) => {
-  console.log("Modal Confirmation");
   return (
     <div className="modal-confirmation">
       <div className="modal-confirmation__content">

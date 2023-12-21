@@ -11,13 +11,11 @@ const SignUpPopup = ({
 }) => {
   const formValidator = useFormWithValidation();
   const [error, setError] = useState({});
-  console.log(error);
   const handleSubmit = (e) => {
     e.preventDefault();
     const { name, email, password } = formValidator.values;
     signUp({ name, email, password })
       .then((res) => {
-        console.log(res);
         onRegisteredSuccess();
       })
       .catch((err) => {

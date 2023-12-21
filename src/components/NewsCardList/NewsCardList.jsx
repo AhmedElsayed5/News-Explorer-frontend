@@ -1,23 +1,18 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import NewsCard from "../NewsCard/NewsCard";
 import "./NewsCardList.css";
 import { useLocation } from "react-router-dom";
 
-const NewsCardList = ({ children, cards, error, checkSaveStatus }) => {
+const NewsCardList = ({
+  children,
+  cards,
+  error,
+  unSave,
+  save,
+  onSignUpModal,
+}) => {
   const location = useLocation();
   const [numberOfCards, setNumberOfCards] = useState(3);
-
-  const [cardsToRender, setCardsToRender] = useState([{}]);
-  useEffect(() => {
-    if (location.pathname === "/") {
-      setCardsToRender(cards);
-    } else {
-      console.log("saved-news");
-      let newCards = cards?.map((card) => card.props);
-      setCardsToRender(newCards);
-    }
-  }, [cards, location]);
-
   return (
     <section className="card-list">
       <div className="card-list__content">
@@ -30,15 +25,18 @@ const NewsCardList = ({ children, cards, error, checkSaveStatus }) => {
         {children}
         {/* <div className="card-list__container-button"> */}
         {cards.length ? (
+          //home
           <div className="card-list__container-button">
             {location.pathname === "/" ? (
               <>
                 <div className="card-list__container">
-                  {cardsToRender?.slice(0, numberOfCards).map((card, key) => (
+                  {cards?.slice(0, numberOfCards).map((item, key) => (
                     <NewsCard
-                      {...card}
+                      card={item}
                       key={key}
-                      checkSaveStatus={checkSaveStatus}
+                      unSave={unSave}
+                      save={save}
+                      onSignUpModal={onSignUpModal}
                     />
                   ))}
                 </div>
@@ -52,12 +50,14 @@ const NewsCardList = ({ children, cards, error, checkSaveStatus }) => {
                 </div>
               </>
             ) : (
+              // saved news page
               <div className="card-list__container">
-                {cardsToRender?.map((card, key) => (
+                {cards?.map((item, key) => (
                   <NewsCard
-                    {...card}
+                    card={item}
                     key={key}
-                    checkSaveStatus={checkSaveStatus}
+                    unSave={unSave}
+                    // checkSaveStatus={checkSaveStatus}
                   />
                 ))}
               </div>

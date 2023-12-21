@@ -2,7 +2,7 @@ import { checkResponse } from "./Api";
 export const baseUrl =
   process.env.NODE_ENV === "production"
     ? "https://api.newsapp.crabdance.com"
-    : "http://localhost:3001";
+    : "http://localhost:3000";
 
 const headers = {
   "Content-type": "application/json",
@@ -27,6 +27,41 @@ export const signIn = ({ email, password }) => {
 export const getCurrentUser = (token) => {
   return fetch(`${baseUrl}/users/me`, {
     method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
+};
+
+// get saved cards
+
+export const getCardsRequest = (token) => {
+  return fetch(`${baseUrl}/articles`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
+};
+
+// save card
+
+export const saveArticle = (token, cardInfo) => {
+  return fetch(`${baseUrl}/articles`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(cardInfo),
+  }).then(checkResponse);
+};
+
+export const deleteArticle = (token, id) => {
+  return fetch(`${baseUrl}/articles/${id}`, {
+    method: "DELETE",
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,

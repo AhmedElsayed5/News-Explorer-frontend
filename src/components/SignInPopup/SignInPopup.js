@@ -2,13 +2,15 @@ import React, { useState, useContext } from "react";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 import { useFormWithValidation } from "../UseFormWithValidation/UseFormWithValidation";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import { signIn } from "../../utils/MainApi";
+import { SavedCardsContext } from "../../contexts/SavedCardsContext";
+import { signIn, getCardsRequest } from "../../utils/MainApi";
 
 const SignInPopup = ({ onCloseModal, onSignUpModal, isOpen }) => {
   const formValidator = useFormWithValidation();
   const [error, setError] = useState({});
 
   const { setCurrentUser } = useContext(CurrentUserContext);
+  const { setSavedCardsState } = useContext(SavedCardsContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,13 +19,20 @@ const SignInPopup = ({ onCloseModal, onSignUpModal, isOpen }) => {
       password: formValidator.values["password"],
     })
       .then((res) => {
+        // localStorage.removeItem("jwt");
         localStorage.setItem("jwt", res.token);
         setCurrentUser(res.user);
-        onCloseModal();
+        return getCardsRequest(res.token);
+      })
+      .then((res) => {
+        setSavedCardsState(res);
       })
       .catch((err) => {
         setError(err);
         console.log(err);
+      })
+      .finally(() => {
+        onCloseModal();
       });
   };
 

@@ -7,11 +7,12 @@ const SavedNewsPage = ({
   onSignInModal,
   onSignUpModal,
   onCloseModal,
+  onSignOut,
   onMenuModal,
   showNewsCard,
   cards,
   error,
-  checkSaveStatus,
+  unSave,
   loading,
 }) => {
   return (
@@ -21,6 +22,7 @@ const SavedNewsPage = ({
         onSignUpModal={onSignUpModal}
         onCloseModal={onCloseModal}
         onMenuModal={onMenuModal}
+        onSignOut={onSignOut}
         currentPage={"Saved News"}
       />
       <section>
@@ -32,17 +34,9 @@ const SavedNewsPage = ({
         />
       </section>
       <section>
-        {showNewsCard ? (
-          <NewsCardList
-            cards={cards}
-            error={error}
-            checkSaveStatus={checkSaveStatus}
-          >
-            {loading && <PreLoader></PreLoader>}
-          </NewsCardList>
-        ) : (
-          <></>
-        )}
+        <NewsCardList cards={cards} unSave={unSave} error={error}>
+          {loading && <PreLoader></PreLoader>}
+        </NewsCardList>
       </section>
       <Footer />
     </div>

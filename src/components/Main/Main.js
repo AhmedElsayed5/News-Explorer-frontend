@@ -1,14 +1,7 @@
 import { useState } from "react";
 import "./Main.css";
 
-const Main = ({
-  onSignInModal,
-  onSignUpModal,
-  onCloseModal,
-  onSearch,
-  onMenuModal,
-  onSignOut,
-}) => {
+const Main = ({ onSearch }) => {
   const [search, setSearch] = useState("");
   const handleSearch = (e) => {
     setSearch(e.target.value);
