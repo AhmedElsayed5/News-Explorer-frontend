@@ -26,14 +26,13 @@ const SignInPopup = ({ onCloseModal, onSignUpModal, isOpen }) => {
       })
       .then((res) => {
         setSavedCardsState(res);
+        onCloseModal();
       })
       .catch((err) => {
         setError(err);
         console.log(err);
       })
-      .finally(() => {
-        onCloseModal();
-      });
+      .finally(() => {});
   };
 
   return (

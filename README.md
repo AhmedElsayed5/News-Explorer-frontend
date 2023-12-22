@@ -1,3 +1,8 @@
+# Deployed subdomains
+
+newsapp.crabdance.com
+www.newsapp.crabdance.com
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

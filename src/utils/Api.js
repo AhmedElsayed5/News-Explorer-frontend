@@ -18,13 +18,7 @@ const baseUrl = "https://newsapi.org/v2/everything?";
 
 export const getItems = (q) => {
   return fetch(
-    `${baseUrl}q=${q}&apiKey=${apiKey}&from=${from}&to=${to}&pageSize=${pageSize}`,
-    {
-      method: "GET",
-      headers: {
-        authorization: apiKey,
-      },
-    }
+    `${baseUrl}q=${q}&apiKey=${apiKey}&from=${from}&to=${to}&pageSize=${pageSize}`
   )
     .then(checkResponse)
     .then((res) => res.articles);
