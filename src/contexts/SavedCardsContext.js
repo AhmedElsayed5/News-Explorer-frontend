@@ -1,7 +1,8 @@
 import React from "react";
 
 const SavedCardsContext = React.createContext({
-  SavedCards: [],
+  savedCardsState: [],
+  setSavedCardsState: () => {},
 });
 
 export { SavedCardsContext };

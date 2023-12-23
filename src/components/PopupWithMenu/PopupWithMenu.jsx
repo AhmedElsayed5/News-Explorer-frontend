@@ -30,7 +30,7 @@ const PopupWithMenu = ({ onCloseModal, onSignInModal, onSignOut }) => {
             </Link>
           </button>
 
-          {!currentUser.email && (
+          {!currentUser?.email && (
             <button
               onClick={onSignInModal}
               className="menu__button menu__button-signin"
@@ -39,7 +39,7 @@ const PopupWithMenu = ({ onCloseModal, onSignInModal, onSignOut }) => {
             </button>
           )}
 
-          {currentUser.email && (
+          {currentUser?.email && (
             <div className="menu__saved-news ">
               <Link className="menu__saved-news-link" to="/savednews">
                 Saved articles
@@ -47,13 +47,13 @@ const PopupWithMenu = ({ onCloseModal, onSignInModal, onSignOut }) => {
             </div>
           )}
 
-          {currentUser.email && (
+          {currentUser?.email && (
             <button
               onClick={onSignOut}
               className="menu__button menu__button-signin"
             >
               <div className="header__button-logout">
-                {currentUser.email.slice(0, 3).toUpperCase()}
+                {currentUser.name}
                 <img src={logout} alt="logout" />
               </div>
             </button>

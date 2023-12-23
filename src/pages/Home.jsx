@@ -12,9 +12,10 @@ const Home = ({
   onSignOut,
   onMenuModal,
   showNewsCard,
+  save,
+  unSave,
   cards,
   error,
-  checkSaveStatus,
   loading,
 }) => {
   return (
@@ -44,7 +45,9 @@ const Home = ({
           <NewsCardList
             cards={cards}
             error={error}
-            checkSaveStatus={checkSaveStatus}
+            save={save}
+            unSave={unSave}
+            onSignUpModal={onSignUpModal}
           >
             {loading && <PreLoader></PreLoader>}
           </NewsCardList>

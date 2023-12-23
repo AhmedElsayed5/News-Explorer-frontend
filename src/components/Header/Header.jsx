@@ -7,6 +7,7 @@ import logoutDark from "../../images/logout-dark.svg";
 
 const Header = ({ onSignInModal, onMenuModal, currentPage, onSignOut }) => {
   const { currentUser } = useContext(CurrentUserContext);
+
   return (
     <header
       className={"header"}
@@ -69,7 +70,7 @@ const Header = ({ onSignInModal, onMenuModal, currentPage, onSignOut }) => {
           </div>
         )}
 
-        {currentUser?.email && currentPage === "Home" ? (
+        {currentUser?.name && currentPage === "Home" ? (
           <div className="header__button-container">
             <button
               className={`header__button header__button-home header__home-saved-news`}
@@ -81,7 +82,7 @@ const Header = ({ onSignInModal, onMenuModal, currentPage, onSignOut }) => {
             {/* <div className=""></div> */}
           </div>
         ) : (
-          currentUser.email && (
+          currentUser?.name && (
             <div className="header__button-container">
               <button className={`header__button header__button-home`}>
                 <Link
@@ -96,7 +97,7 @@ const Header = ({ onSignInModal, onMenuModal, currentPage, onSignOut }) => {
           )
         )}
 
-        {!currentUser.email && currentPage === "Home" ? (
+        {!currentUser?.name && currentPage === "Home" ? (
           <button
             className="header__button header__signin header__home"
             onClick={onSignInModal}
@@ -104,7 +105,7 @@ const Header = ({ onSignInModal, onMenuModal, currentPage, onSignOut }) => {
             <p className="header__button-title">Sign-in</p>
           </button>
         ) : (
-          !currentUser.email && (
+          !currentUser?.name && (
             <button
               className="header__button header__signin"
               onClick={onSignInModal}
@@ -114,28 +115,24 @@ const Header = ({ onSignInModal, onMenuModal, currentPage, onSignOut }) => {
           )
         )}
 
-        {currentUser.email && currentPage === "Home" ? (
+        {currentUser?.name && currentPage === "Home" ? (
           <button
             onClick={onSignOut}
             className="header__button header__signin header__home"
           >
             <div className="header__button-logout">
-              <p className="header__button-title">
-                {currentUser.email.slice(0, 3).toUpperCase()}
-              </p>
+              <p className="header__button-title">{currentUser.name}</p>
               <img src={logout} alt="logout" />
             </div>
           </button>
         ) : (
-          currentUser.email && (
+          currentUser?.name && (
             <button
               onClick={onSignOut}
               className="header__button header__signin"
             >
               <div className="header__button-logout">
-                <p className="header__button-title">
-                  {currentUser.email.slice(0, 3).toUpperCase()}
-                </p>
+                <p className="header__button-title">{currentUser.name}</p>
                 <img src={logoutDark} alt="logout" />
               </div>
             </button>

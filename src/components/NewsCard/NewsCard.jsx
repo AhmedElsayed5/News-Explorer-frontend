@@ -1,5 +1,5 @@
 import "./NewsCard.css";
-import React, { useContext, useEffect } from "react";
+import React, { useCallback, useContext, useEffect } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { SavedCardsContext } from "../../contexts/SavedCardsContext";
 import bookMark from "../../images/bookmark.svg";
@@ -9,52 +9,93 @@ import trash from "../../images/trash.svg";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
-const NewsCard = (props) => {
+const NewsCard = ({ card, unSave, save, onSignUpModal }) => {
   const location = useLocation();
   const [currentCard, setCurrentCard] = useState({});
-
   useEffect(() => {
     if (location.pathname === "/") {
-      setCurrentCard(props);
-    } else setCurrentCard(props);
-  }, [location, props]);
-  const {
-    source,
-    title,
-    publishedAt,
-    description,
-    urlToImage,
-    checkSaveStatus,
-  } = currentCard;
+      setCurrentCard({
+        image: card?.urlToImage,
+        date: card?.publishedAt,
+        title: card?.title,
+        description: card?.description,
+        source: card?.source?.name,
+        link: card?.url,
+      });
+    } else {
+      setCurrentCard({
+        image: card?.image,
+        date: card?.date,
+        title: card?.title,
+        description: card?.text,
+        source: card?.source,
+        keyword: card?.keyword,
+        link: card?.link,
+      });
+    }
+  }, [
+    location,
+    card?.urlToImage,
+    card?.publishedAt,
+    card?.title,
+    card?.description,
+    card?.source?.name,
+    card?.image,
+    card?.date,
+    card?.text,
+    card?.source,
+    card?.keyword,
+    card?.link,
+    card?.url,
+  ]);
+
+  const { link, keyword, source, title, date, description, image } =
+    currentCard;
 
   const [isHovered, setHover] = useState(false);
   const { currentUser } = useContext(CurrentUserContext);
   const { savedCardsState } = useContext(SavedCardsContext);
 
-  const [isSaved, setIsSaved] = useState(
-    savedCardsState
-      ? savedCardsState?.some((item) => title === item.title)
-      : false
-  );
+  const [isSaved, setIsSaved] = useState();
 
-  const keyWordToShow = savedCardsState?.find(
-    (item) => item?.props?.title === title
+  const check = useCallback(
+    (item) => {
+      return title === item?.title &&
+        source === item?.source &&
+        date === item?.date
+        ? true
+        : false;
+    },
+    [date, source, title]
   );
 
   useEffect(
-    () =>
-      setIsSaved(savedCardsState?.some((item) => title === item.props.title)),
-    [savedCardsState, title]
+    () => setIsSaved(savedCardsState?.some((item) => check(item))),
+    [savedCardsState, title, date, source, check]
   );
+
+  const unSaveProcess = () => {
+    const item = savedCardsState.filter(check);
+    unSave(item[0]._id);
+  };
+
+  const saveProcess = () => {
+    save(card);
+  };
+
   function formatDate(string) {
     var options = { year: "numeric", month: "long", day: "numeric" };
     return new Date(string).toLocaleDateString([], options);
   }
-  console.log(isHovered);
+
+  const checkDirections = () => {
+    isSaved ? unSaveProcess() : saveProcess();
+  };
 
   return (
     <div className="card">
       {location.pathname === "/" ? (
+        // home
         <div
           className="card__save-button-container"
           onMouseEnter={() => setHover(true)}
@@ -62,7 +103,7 @@ const NewsCard = (props) => {
         >
           <div
             className={
-              !currentUser.email & isHovered
+              !currentUser?.email & isHovered
                 ? `card__save-button-message-container`
                 : `card__save-button-message-container-hidden`
             }
@@ -72,26 +113,29 @@ const NewsCard = (props) => {
             </p>
           </div>
           <button className="card__save-button">
-            {isSaved && currentUser.email && location.pathname === "/" ? (
+            {currentUser?.email && location.pathname === "/" ? (
               <img
                 className="card__save-button-image"
-                src={bookMarkSaved}
+                src={isSaved ? bookMarkSaved : bookMark}
                 alt="save-button"
                 onClick={() => {
-                  currentUser.email && checkSaveStatus({ ...props });
+                  checkDirections();
                 }}
               />
             ) : (
               <div
-                onMouseEnter={() => currentUser.email && setHover(true)}
-                onMouseLeave={() => currentUser.email && setHover(false)}
+                onMouseEnter={() => currentUser?.email && setHover(true)}
+                onMouseLeave={() => currentUser?.email && setHover(false)}
               >
                 <img
                   className="card__save-button-image"
                   src={isHovered ? bookMarkHover : bookMark}
                   alt="save-button"
+                  // if saved delete if not add to save
                   onClick={() => {
-                    currentUser.email && checkSaveStatus({ ...props });
+                    onSignUpModal();
+                    // unSave();
+                    // currentUser?.email && checkSaveStatus({ ...props });
                   }}
                 />
               </div>
@@ -101,7 +145,7 @@ const NewsCard = (props) => {
       ) : (
         <>
           <div className="card__keyword">
-            <p className="card__keyword-title">{keyWordToShow?.keyword}</p>
+            <p className="card__keyword-title">{keyword}</p>
           </div>
           <div
             className="card__save-button-container"
@@ -110,7 +154,7 @@ const NewsCard = (props) => {
           >
             <div
               className={
-                currentUser.email && isHovered
+                currentUser?.email && isHovered
                   ? `card__save-button-message-container`
                   : `card__save-button-message-container-hidden`
               }
@@ -122,8 +166,10 @@ const NewsCard = (props) => {
                 className="card__save-button-image"
                 src={trash}
                 alt="save-button"
+                // delete
                 onClick={() => {
-                  checkSaveStatus({ ...props });
+                  checkDirections();
+                  // checkSaveStatus({ ...props });
                 }}
               />
             </button>
@@ -131,15 +177,22 @@ const NewsCard = (props) => {
         </>
       )}
 
-      <img className="card__image" src={urlToImage} alt="card" />
+      <img className="card__image" src={image} alt="card" />
       <div className="card__info">
-        <h2 className="card__publish-date">{formatDate(publishedAt)}</h2>
+        <h2 className="card__publish-date">{formatDate(date)}</h2>
         <div className="card__tittle-padding">
-          <p className="card__tilte">{title}</p>
+          <a
+            className="footer__icons-link"
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <p className="card__tilte">{title}</p>
+          </a>
         </div>
         <p className="card__description">{description}</p>
 
-        <p className="card__source">{source?.name}</p>
+        <p className="card__source">{source}</p>
       </div>
     </div>
   );

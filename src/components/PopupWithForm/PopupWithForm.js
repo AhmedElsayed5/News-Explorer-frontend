@@ -3,10 +3,12 @@ import "./PopupWithForm.css";
 import closeButton from "../../images/CloseButton.svg";
 const ModalWithForm = ({
   children,
+  error,
   onSignUpModal,
   onSignInModal,
   buttonText,
   title,
+  isValid,
   onCloseModal,
   onSubmit,
 }) => {
@@ -24,9 +26,27 @@ const ModalWithForm = ({
           {children}
           {title === "Sign In" ? (
             <div className="modal__buttons">
-              <button className="modal__button-submit" type="submit">
-                {buttonText}
-              </button>
+              <span className="modal__buuton-error">
+                {error.length ? "sign in failed" : ""}
+              </span>
+              {isValid ? (
+                <button
+                  className={
+                    "modal__button-submit-inactive modal__button-submit-active"
+                  }
+                  type="submit"
+                >
+                  {buttonText}
+                </button>
+              ) : (
+                <button
+                  className={"modal__button-submit-inactive"}
+                  type="submit"
+                >
+                  {buttonText}
+                </button>
+              )}
+
               <div className="modal__button-other-option-content">
                 <p className="modal__button-other-option-content-or">or</p>
                 <button
@@ -39,9 +59,26 @@ const ModalWithForm = ({
             </div>
           ) : (
             <div className="modal__buttons">
-              <button className="modal__button-submit" type="submit">
-                {buttonText}
-              </button>
+              <span className="modal__buuton-error">
+                {error.length ? "sign up failed" : ""}
+              </span>
+              {isValid ? (
+                <button
+                  className={
+                    "modal__button-submit-inactive modal__button-submit-active"
+                  }
+                  type="submit"
+                >
+                  {buttonText}
+                </button>
+              ) : (
+                <button
+                  className={"modal__button-submit-inactive"}
+                  type="submit"
+                >
+                  {buttonText}
+                </button>
+              )}
               <div className="modal__button-other-option-content modal__button-other-option-signup-only">
                 <p className="modal__button-other-option-content-or">or</p>
                 <button

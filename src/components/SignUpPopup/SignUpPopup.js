@@ -1,33 +1,38 @@
 import React, { useState } from "react";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
+import { useFormWithValidation } from "../UseFormWithValidation/UseFormWithValidation";
+import { signUp } from "../../utils/MainApi";
 
-const SignUpPopup = ({ onCloseModal, onSignInModal, isOpen }) => {
-  const [name, setName] = useState("");
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  };
-
-  const [email, setEmail] = useState("");
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const [password, setPassWord] = useState("");
-  const handlePassWordChange = (e) => {
-    setPassWord(e.target.value);
-  };
-
+const SignUpPopup = ({
+  onCloseModal,
+  onSignInModal,
+  isOpen,
+  onRegisteredSuccess,
+}) => {
+  const formValidator = useFormWithValidation();
+  const [error, setError] = useState({});
   const handleSubmit = (e) => {
     e.preventDefault();
+    const { name, email, password } = formValidator.values;
+    signUp({ name, email, password })
+      .then((res) => {
+        onRegisteredSuccess();
+      })
+      .catch((err) => {
+        console.log(err);
+        setError(err);
+      });
   };
 
   return (
     <PopupWithForm
       title="Sign Up"
+      error={error}
       buttonText="Next"
       className="modal__title"
       onCloseModal={onCloseModal}
       isOpen={isOpen}
+      isValid={formValidator.isValid}
       onSubmit={handleSubmit}
       onSignInModal={onSignInModal}
     >
@@ -36,15 +41,18 @@ const SignUpPopup = ({ onCloseModal, onSignInModal, isOpen }) => {
           Email
           <input
             className="modal__input"
-            type="text"
+            type="email"
             name="email"
             minLength="1"
             maxLength="60"
             placeholder="Enter email"
-            value={email}
+            value={formValidator.values["email"]}
             required={true}
-            onChange={handleEmailChange}
+            onChange={(e) => formValidator.handleChange(e)}
           ></input>
+          <span className="modal__span">
+            {!!formValidator.errors["email"] ? "Invalid email address" : ""}
+          </span>
         </label>
         <label className="modal__label">
           Password
@@ -55,10 +63,13 @@ const SignUpPopup = ({ onCloseModal, onSignInModal, isOpen }) => {
             minLength="1"
             maxLength="30"
             placeholder="Enter password"
-            value={password}
+            value={formValidator.values["password"]}
             required={true}
-            onChange={handlePassWordChange}
+            onChange={(e) => formValidator.handleChange(e)}
           ></input>
+          <span className="modal__span">
+            {!!formValidator.errors["password"] ? "Invalid password" : ""}
+          </span>
         </label>
         <label className="modal__label">
           Username
@@ -68,10 +79,14 @@ const SignUpPopup = ({ onCloseModal, onSignInModal, isOpen }) => {
             name="name"
             minLength="1"
             maxLength="30"
+            required={true}
             placeholder="Enter your username"
-            value={name}
-            onChange={handleNameChange}
+            value={formValidator.values["name"]}
+            onChange={(e) => formValidator.handleChange(e)}
           ></input>
+          <span className="modal__span">
+            {!!formValidator.errors["name"] ? "Invalid username" : ""}
+          </span>
         </label>
       </fieldset>
     </PopupWithForm>

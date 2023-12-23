@@ -14,11 +14,18 @@ export const checkResponse = (res) => {
   return Promise.reject(`Error ${res.status}`);
 };
 
-const baseUrl = "https://newsapi.org/v2/everything?";
+export const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://nomoreparties.co/news/v2/top-headlines?country=us&"
+    : "https://newsapi.org/v2/everything?";
+
+// GET https://nomoreparties.co/news/v2/top-headlines?country=us&apiKey=[your_key]
+
+// const baseUrl = "https://newsapi.org/v2/everything?";
 
 export const getItems = (q) => {
   return fetch(
-    `${baseUrl}q=${q}&apiKey=${apiKey}&from=${from}&to=${to}&pageSize=${pageSize}`,
+    `${baseUrl}apiKey=${apiKey}&q=${q}&from=${from}&to=${to}&pageSize=${pageSize}`,
     {
       method: "GET",
       headers: {

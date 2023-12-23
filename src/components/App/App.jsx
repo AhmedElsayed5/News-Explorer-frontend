@@ -2,13 +2,21 @@ import "./App.css";
 import SignInPopup from "../SignInPopup/SignInPopup.js";
 import SignUpPopup from "../SignUpPopup/SignUpPopup.js";
 import PopupWithMenu from "../PopupWithMenu/PopupWithMenu.jsx";
+import ModalConfirmation from "../ModalConfirmation/ModalConfirmation.jsx";
+import {
+  getCurrentUser,
+  getCardsRequest,
+  saveArticle,
+  deleteArticle,
+} from "../../utils/MainApi.js";
 import { getItems } from "../../utils/Api.js";
 import { Route, Switch } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext.js";
 import { SavedCardsContext } from "../../contexts/SavedCardsContext.js";
 import Home from "../../pages/Home";
 import SavedNewsPage from "../../pages/SavedNewsPage.jsx";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.js";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -24,38 +32,70 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [savedCardsState, setSavedCardsState] = useState([]);
 
-  const onSignIn = ({ email, password }) => {
-    setCurrentUser({ email, password });
-    onCloseModal();
-  };
-
   const onSignOut = () => {
+    localStorage.removeItem("jwt");
     setCurrentUser({});
     onCloseModal();
   };
 
-  const deleteFromSavedCards = (props) => {
-    let newCards;
-    newCards = savedCardsState.filter(
-      (item) => item?.props?.title !== props.title
-    );
-    setSavedCardsState(newCards);
+  const updatedSavedCards = () => {
+    const newToken = localStorage.getItem("jwt");
+    getCardsRequest(newToken)
+      .then((res) => {
+        setSavedCardsState(res);
+      })
+      .catch((err) => console.log(err));
   };
+
+  const getUserAndCards = useCallback((token) => {
+    getCurrentUser(token)
+      .then((res) => {
+        setCurrentUser(res.user);
+        localStorage.setItem("jwt", res.token);
+      })
+      .then(() => {
+        // make a whole function to updated context
+        updatedSavedCards();
+      })
+      .catch((err) => console.log(err));
+  }, []);
+  // used to check if there's current user if so get cards as well
+  // useEffect to bring all cards and logged user to keep it in context for any time logged in or refreshed
+  useEffect(() => {
+    const token = localStorage.getItem("jwt");
+    token?.length ? getUserAndCards(token) : <></>;
+  }, [getUserAndCards]);
+
+  ////// to control cards status
+
+  // Take out from savedCards
+  const deleteFromSavedCards = (id) => {
+    const token = localStorage.getItem("jwt");
+    deleteArticle(token, id)
+      .then((res) => {
+        updatedSavedCards();
+      })
+      .catch((err) => console.log(err));
+  };
+
+  // add it to Saved cards list
 
   const addToSavedCards = (props) => {
     let searchValuetoUpper =
       searchValue.charAt(0).toUpperCase() + searchValue.slice(1);
-    setSavedCardsState((prevState) => [
-      ...prevState,
-      { props, keyword: searchValuetoUpper },
-    ]);
-  };
-
-  const checkSaveStatus = (props) => {
-    const check = savedCardsState?.some(
-      (item) => props?.title === item?.props?.title
-    );
-    check ? deleteFromSavedCards(props) : addToSavedCards(props);
+    const cardInfo = {
+      keyword: searchValuetoUpper,
+      text: props?.description,
+      title: props?.title,
+      date: props?.publishedAt,
+      source: props?.source?.name,
+      link: props?.url,
+      image: props.urlToImage,
+    };
+    const token = localStorage.getItem("jwt");
+    saveArticle(token, cardInfo)
+      .then((res) => updatedSavedCards())
+      .catch((err) => console.log(err));
   };
 
   const [localStorageCards, setLocalStorageCards] = useState(() => {
@@ -66,7 +106,7 @@ function App() {
   });
 
   const [showNewsCard, setShowNewsCard] = useState(
-    () => localStorageCards.length
+    () => localStorageCards?.length
   );
 
   const [dataError, setDataError] = useState("");
@@ -78,6 +118,7 @@ function App() {
     localStorage.setItem("search", value);
   };
 
+  // to get cards from newsApi
   useEffect(() => {
     loading ? (
       getItems(searchValue)
@@ -104,6 +145,10 @@ function App() {
 
   const onSignUpModal = () => {
     setActiveModal("signUpModal");
+  };
+
+  const onRegisteredSuccess = () => {
+    setActiveModal("confirmModal");
   };
 
   const onMenuModal = () => {
@@ -137,8 +182,10 @@ function App() {
 
   return (
     <main className="app">
-      <CurrentUserContext.Provider value={{ currentUser }}>
-        <SavedCardsContext.Provider value={{ savedCardsState }}>
+      <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
+        <SavedCardsContext.Provider
+          value={{ savedCardsState, setSavedCardsState }}
+        >
           <Switch>
             <Route
               exact
@@ -153,41 +200,47 @@ function App() {
                   onMenuModal={onMenuModal}
                   cards={localStorageCards}
                   error={dataError}
-                  checkSaveStatus={checkSaveStatus}
+                  save={addToSavedCards}
+                  unSave={deleteFromSavedCards}
                   showNewsCard={showNewsCard}
                   loading={loading}
                 />
               )}
             />
-
-            <Route
+            <ProtectedRoute
               path="/savednews"
-              render={() => (
-                <SavedNewsPage
-                  onSignInModal={onSignInModal}
-                  onSignUpModal={onSignUpModal}
-                  onCloseModal={onCloseModal}
-                  onMenuModal={onMenuModal}
-                  showNewsCard={showNewsCard}
-                  cards={savedCardsState}
-                  error={dataError}
-                  checkSaveStatus={checkSaveStatus}
-                  loading={loading}
-                />
-              )}
-            />
+              component={SavedNewsPage}
+              onSignInModal={onSignInModal}
+            >
+              <Route
+                path="/savednews"
+                render={() => (
+                  <SavedNewsPage
+                    onSignInModal={onSignInModal}
+                    onSignUpModal={onSignUpModal}
+                    onCloseModal={onCloseModal}
+                    onSignOut={onSignOut}
+                    onMenuModal={onMenuModal}
+                    cards={savedCardsState}
+                    unSave={deleteFromSavedCards}
+                    error={dataError}
+                    loading={loading}
+                  />
+                )}
+              />
+            </ProtectedRoute>
           </Switch>
           {activeModal === "signInModal" && (
             <SignInPopup
               onSignUpModal={onSignUpModal}
               onCloseModal={onCloseModal}
-              onSignIn={onSignIn}
             ></SignInPopup>
           )}
           {activeModal === "signUpModal" && (
             <SignUpPopup
               onSignInModal={onSignInModal}
               onCloseModal={onCloseModal}
+              onRegisteredSuccess={onRegisteredSuccess}
             ></SignUpPopup>
           )}
           {activeModal === "menuModal" && (
@@ -197,6 +250,13 @@ function App() {
               onSignInModal={onSignInModal}
               onSignOut={onSignOut}
             ></PopupWithMenu>
+          )}
+
+          {activeModal === "confirmModal" && (
+            <ModalConfirmation
+              onCloseModal={onCloseModal}
+              onSignInModal={onSignInModal}
+            ></ModalConfirmation>
           )}
         </SavedCardsContext.Provider>
       </CurrentUserContext.Provider>

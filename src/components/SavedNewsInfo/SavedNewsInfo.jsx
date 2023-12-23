@@ -37,7 +37,7 @@ const SavedNewsInfo = () => {
       <p className="saved-news-page__header">Saved articles</p>
       <div className="saved-news-page__description-container">
         <h1 className="saved-news-page__description">
-          {currentUser?.email?.slice(0, 3).toUpperCase()},you have
+          {currentUser?.email?.slice(0, 3).toUpperCase()},you have{" "}
           {savedCardsState ? savedCardsState?.length : 0} saved articles
         </h1>
       </div>
