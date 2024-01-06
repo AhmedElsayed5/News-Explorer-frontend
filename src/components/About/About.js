@@ -1,4 +1,4 @@
-import aboutPic from "../../images/aboutPic.svg";
+import aboutPic from "../../images/aboutPic.jpeg";
 import "./About.css";
 const About = () => {
   return (
@@ -8,12 +8,12 @@ const About = () => {
         <h2 className="about__title">About the author</h2>
         <div className="about__paragraph_container">
           <p className="about__paragraph">
-            This block describes the project author. Here you should indicate
-            your name, what you do, and which development technologies you know.
+            Ahmed Awad +3 years experience as a Software Engineer. Used MERN
+            stack to for this project.
           </p>
           <p className="about__paragraph">
-            You can also talk about your experience with Practicum, what you
-            learned there, and how you can help potential customers.
+            Led teams building products generated +2 million dollars in revenue.
+            Focuses on designing systems to solve complex problems.
           </p>
         </div>
       </div>
