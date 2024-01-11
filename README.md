@@ -8,7 +8,7 @@
 - Used News Api [https://newsapi.org/]
 - MERN stack (MongoDB, Express, React, NodeJs]
 - Deployed using GCP (Google cloud Platform)
-- JWS for authorizationnnnnnnnn
+- JWS for authorization
 - HTTPS Protocol
 
 ## Images
