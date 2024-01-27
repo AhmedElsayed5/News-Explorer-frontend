@@ -9,7 +9,7 @@
 - MERN stack (MongoDB, Express, React, NodeJs]
 - Deployed using GCP (Google cloud Platform)
 - JWS for authorization
-- HTTPS Protocol
+
 
 ## Images
 
