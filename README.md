@@ -2,7 +2,7 @@
 
 ### Desciption
 
-- Platform allows you to find hotest news on you favortie topics
+- Platform allows your to find hotest news on you favortie topics
 - I like to keep an eye on news related to finance, soccer and photography. It was hard to just rely on google to find an interesting article. It was convenient to build a website that can be one place Where I can find news about my interestes.
 - Responsive Design
 - Used News Api [https://newsapi.org/]
